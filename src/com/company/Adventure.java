@@ -11,7 +11,7 @@ public class Adventure {
     Room room1 = new Room("Room 1","A blue room" ,null ,null ,null ,null);
     Room room2 = new Room("Room 2","A green room" ,null,null,null,null);
     Room room3 = new Room("Room 3","A purple room" ,null ,null ,null, null);
-    Room room4 = new Room("Room 4", "A green room", null, null, null, null);
+    Room room4 = new Room("Room 4", "A red room", null, null, null, null);
     Room room5 = new Room("Room 5", "A brown room", null, null, null, null);
     Room room6 = new Room("Room 6", "An orange room", null, null ,null , null);
     Room room7 = new Room("Room 7", "A pink room", null, null, null, null);
@@ -39,8 +39,8 @@ public class Adventure {
     System.out.println("Intro");
     String choice = " ";
     Room currentRoom = room1;
+    System.out.println(currentRoom.getBeskrivelse());
     while (!choice.equalsIgnoreCase("exit")) {
-      System.out.println(currentRoom.getBeskrivelse());
       System.out.println("Choose option");
       choice=sc.next().toLowerCase(Locale.ROOT);
       switch (choice){
@@ -51,12 +51,14 @@ public class Adventure {
           case "north" -> {
               if(currentRoom.getNorth()!=null){
                   currentRoom=currentRoom.getNorth();
+                System.out.println(currentRoom.getBeskrivelse());
               }
               else System.out.println("Can't go that way");
           }
           case "east" -> {
               if (currentRoom.getEast() != null) {
                   currentRoom = currentRoom.getEast();
+                System.out.println(currentRoom.getBeskrivelse());
               }
               else
                   System.out.println("Can't go that way");
@@ -64,12 +66,14 @@ public class Adventure {
           case "south" ->{
               if(currentRoom.getSouth()!=null){
                   currentRoom=currentRoom.getSouth();
+                System.out.println(currentRoom.getBeskrivelse());
               }
               else System.out.println("Can't go that way");
           }
           case "west" ->{
               if(currentRoom.getWest()!=null){
                   currentRoom=currentRoom.getWest();
+                System.out.println(currentRoom.getBeskrivelse());
               }
               else System.out.println("Can't go that way");
           }
