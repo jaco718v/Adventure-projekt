@@ -60,4 +60,8 @@ public class Room {
   public Room getEast() {
     return east;
   }
+
+  public String getBeskrivelse() {
+    return beskrivelse;
+  }
 }
