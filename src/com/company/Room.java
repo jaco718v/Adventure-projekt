@@ -17,34 +17,6 @@ public class Room {
     this.west=west;
   }
 
-  public Room goNorth(){
-    if (north.getNorth()==null){
-      return null;}
-      else
-        return north.getNorth();
-  }
-
-  public Room goEast(){
-    if (east.getEast()==null){
-      return null;}
-    else
-      return east.getEast();
-  }
-
-  public Room goSouth(){
-    if (south.getSouth()==null){
-      return null;}
-    else
-      return south.getSouth();
-  }
-
-  public Room goWest(){
-    if (west.getWest()==null){
-      return null;}
-    else
-      return west.getWest();
-  }
-
   public Room getWest() {
     return west;
   }
@@ -63,5 +35,21 @@ public class Room {
 
   public String getBeskrivelse() {
     return beskrivelse;
+  }
+
+  public void setEast(Room east) {
+    this.east = east;
+  }
+
+  public void setNorth(Room north) {
+    this.north = north;
+  }
+
+  public void setSouth(Room south) {
+    this.south = south;
+  }
+
+  public void setWest(Room west) {
+    this.west = west;
   }
 }
