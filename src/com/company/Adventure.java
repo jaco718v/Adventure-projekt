@@ -45,17 +45,18 @@ public class Adventure {
       choice=sc.next().toLowerCase(Locale.ROOT);
       switch (choice){
           case "help" -> {
-              System.out.println("Options");}
+              System.out.println("Your possible option are:\nlook: Get room description again\n" +
+                  "North: Go north\nEast: Go east\nSouth: go South \nWest: go west");}
           case "look" -> {
               System.out.println(currentRoom.getBeskrivelse());}
-          case "north" -> {
+          case "north","n","go north" -> {
               if(currentRoom.getNorth()!=null){
                   currentRoom=currentRoom.getNorth();
                 System.out.println(currentRoom.getBeskrivelse());
               }
               else System.out.println("Can't go that way");
           }
-          case "east" -> {
+          case "east","e","go east" -> {
               if (currentRoom.getEast() != null) {
                   currentRoom = currentRoom.getEast();
                 System.out.println(currentRoom.getBeskrivelse());
@@ -63,14 +64,14 @@ public class Adventure {
               else
                   System.out.println("Can't go that way");
           }
-          case "south" ->{
+          case "south","s","go south" ->{
               if(currentRoom.getSouth()!=null){
                   currentRoom=currentRoom.getSouth();
                 System.out.println(currentRoom.getBeskrivelse());
               }
               else System.out.println("Can't go that way");
           }
-          case "west" ->{
+          case "west","w","go west" ->{
               if(currentRoom.getWest()!=null){
                   currentRoom=currentRoom.getWest();
                 System.out.println(currentRoom.getBeskrivelse());
