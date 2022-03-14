@@ -17,28 +17,28 @@ public class Room {
     this.west=west;
   }
 
-  public Room goNorth(Room north){
+  public Room goNorth(){
     if (north.getNorth()==null){
       return null;}
       else
         return north.getNorth();
   }
 
-  public Room goEast(Room east){
+  public Room goEast(){
     if (east.getEast()==null){
       return null;}
     else
       return east.getEast();
   }
 
-  public Room goSouth(Room south){
+  public Room goSouth(){
     if (south.getSouth()==null){
       return null;}
     else
       return south.getSouth();
   }
 
-  public Room goWest(Room west){
+  public Room goWest(){
     if (west.getWest()==null){
       return null;}
     else
