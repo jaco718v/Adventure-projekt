@@ -8,19 +8,20 @@ public class Adventure {
   public static void main(String[] args) {
 
     Scanner sc = new Scanner(System.in);
-    Room room1 = new Room();
-    Room room2 = new Room();
-    Room room3 = new Room();
-    Room room4 = new Room();
-    Room room5 = new Room();
-    Room room6 = new Room();
-    Room room7 = new Room();
-    Room room8 = new Room();
-    Room room9 = new Room();
+    Room room1 = new Room("Room 1","A blue room");
+    Room room2 = new Room("Room 2");
+    Room room3 = new Room("Room 3");
+    Room room4 = new Room("Room 4");
+    Room room5 = new Room("Room 5");
+    Room room6 = new Room("Room 6");
+    Room room7 = new Room("Room 7");
+    Room room8 = new Room("Room 8");
+    Room room9 = new Room("Room 9");
     System.out.println("Intro");
     String choice = null;
+    Room currentRoom = room1;
     while (choice.equalsIgnoreCase("exit")) {
-      Room currentRoom = room1;
+      System.out.println(currentRoom.getBeskrivelse());
       System.out.println("Choose option");
       choice=sc.next().toLowerCase(Locale.ROOT);
       switch (choice){
