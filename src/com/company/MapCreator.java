@@ -1,6 +1,6 @@
 package com.company;
 
-public class GameMap {
+public class MapCreator {
 
   Room room1 = new Room("Room 1","A blue room");
   Room room2 = new Room("Room 2","A green room");
