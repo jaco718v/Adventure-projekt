@@ -4,14 +4,19 @@ public class AdventureEngine {
   MapCreator map = new MapCreator();
   Player player = new Player(map.room1);
 
-  public void intro(){
-    System.out.println("Intro");
+  public String intro(){
+    return "Intro";
+  }
+
+  public String FirstRoomdesc(){
+    return map.room1.getBeskrivelse();
   }
 
   public String help(){
     return "Your possible option are:\nlook: Get room description again\n" +
         "North: Go north\nEast: Go east\nSouth: go South \nWest: go west";
   }
+
 
   public String goDirection(Room direction){
     if(!(direction==null)){
@@ -47,6 +52,8 @@ public class AdventureEngine {
       case "west","w","go west" ->{
         return goDirection((player.getCurrentRoom()).getWest());
       }
+      case "exit" ->{
+        return "exiting game...";}
     }
     return "Invalid input";
   }
