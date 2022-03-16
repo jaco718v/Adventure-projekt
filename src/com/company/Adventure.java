@@ -4,81 +4,102 @@ import java.util.Locale;
 import java.util.Scanner;
 
 public class Adventure {
+  Room room1 = new Room("Room 1","A blue room");
+  Room room2 = new Room("Room 2","A green room");
+  Room room3 = new Room("Room 3","A purple room");
+  Room room4 = new Room("Room 4", "A red room");
+  Room room5 = new Room("Room 5", "A brown room");
+  Room room6 = new Room("Room 6", "An orange room");
+  Room room7 = new Room("Room 7", "A pink room");
+  Room room8 = new Room("Room 8", "A yellow room");
+  Room room9 = new Room("Room 9", "turqoise room");
 
-  public static void main(String[] args) {
-
-    Scanner sc = new Scanner(System.in);
-    Room room1 = new Room("Room 1","A blue room" ,null ,null ,null ,null);
-    Room room2 = new Room("Room 2","A green room" ,null,null,null,null);
-    Room room3 = new Room("Room 3","A purple room" ,null ,null ,null, null);
-    Room room4 = new Room("Room 4", "A red room", null, null, null, null);
-    Room room5 = new Room("Room 5", "A brown room", null, null, null, null);
-    Room room6 = new Room("Room 6", "An orange room", null, null ,null , null);
-    Room room7 = new Room("Room 7", "A pink room", null, null, null, null);
-    Room room8 = new Room("Room 8", "A yellow room", null, null, null , null);
-    Room room9 = new Room("Room 9", "turqoise room", null, null , null , null);
+  public void setRoomConnections(){
     room1.setEast(room2);
     room1.setSouth(room4);
+
     room2.setWest(room1);
     room2.setEast(room3);
+
     room3.setWest(room2);
     room3.setSouth(room6);
+
     room4.setNorth(room1);
     room4.setSouth(room7);
+
     room5.setSouth(room8);
     room6.setNorth(room3);
     room6.setSouth(room9);
+
     room7.setNorth(room4);
     room7.setEast(room8);
+
+    room8.setWest(room7);
     room8.setNorth(room5);
     room8.setEast(room9);
+
     room9.setNorth(room6);
     room9.setWest(room8);
+  }
 
-
+  public void intro(){
     System.out.println("Intro");
+  }
+
+  public void help(){
+    System.out.println("Your possible option are:\nlook: Get room description again\n" +
+        "North: Go north\nEast: Go east\nSouth: go South \nWest: go west");
+  }
+
+  public Room goDirection(Room currentRoom,Room direction){
+    if(!(direction==null)){
+      currentRoom = direction;
+      System.out.println(currentRoom.getBeskrivelse());}
+    else{
+      System.out.println("Can't go that way");
+    }
+    return currentRoom;
+  }
+
+  public void options(){
+    System.out.println("Choose option");
+  }
+
+  public void menu(){
+    Scanner sc = new Scanner(System.in);
+    setRoomConnections();
+    intro();
     String choice = " ";
     Room currentRoom = room1;
     System.out.println(currentRoom.getBeskrivelse());
     while (!choice.equalsIgnoreCase("exit")) {
-      System.out.println("Choose option");
+      options();
       choice=sc.next().toLowerCase(Locale.ROOT);
       switch (choice){
-          case "help" -> {
-              System.out.println("Your possible option are:\nlook: Get room description again\n" +
-                  "North: Go north\nEast: Go east\nSouth: go South \nWest: go west");}
-          case "look" -> {
-              System.out.println(currentRoom.getBeskrivelse());}
-          case "north","n","go north" -> {
-              if(currentRoom.getNorth()!=null){
-                  currentRoom=currentRoom.getNorth();
-                System.out.println(currentRoom.getBeskrivelse());
-              }
-              else System.out.println("Can't go that way");
-          }
-          case "east","e","go east" -> {
-              if (currentRoom.getEast() != null) {
-                  currentRoom = currentRoom.getEast();
-                System.out.println(currentRoom.getBeskrivelse());
-              }
-              else
-                  System.out.println("Can't go that way");
-          }
-          case "south","s","go south" ->{
-              if(currentRoom.getSouth()!=null){
-                  currentRoom=currentRoom.getSouth();
-                System.out.println(currentRoom.getBeskrivelse());
-              }
-              else System.out.println("Can't go that way");
-          }
-          case "west","w","go west" ->{
-              if(currentRoom.getWest()!=null){
-                  currentRoom=currentRoom.getWest();
-                System.out.println(currentRoom.getBeskrivelse());
-              }
-              else System.out.println("Can't go that way");
-          }
+        case "help" -> {
+          help();
+        }
+        case "look" -> {
+          System.out.println(currentRoom.getBeskrivelse());
+        }
+        case "north","n","go north" -> {
+          currentRoom=goDirection(currentRoom,currentRoom.getNorth());
+        }
+        case "east","e","go east" -> {
+          currentRoom=goDirection(currentRoom,currentRoom.getEast());
+        }
+        case "south","s","go south" ->{
+          currentRoom=goDirection(currentRoom,currentRoom.getSouth());
+        }
+        case "west","w","go west" ->{
+          currentRoom=goDirection(currentRoom,currentRoom.getWest());
+        }
       }
     }
+  }
+
+  public static void main(String[] args) {
+    Adventure obj = new Adventure();
+    obj.menu();
   }
 }

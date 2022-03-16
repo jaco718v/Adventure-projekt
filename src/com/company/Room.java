@@ -8,13 +8,9 @@ public class Room {
   private Room south;
   private Room west;
 
-  public Room(String name, String beskrivelse, Room north, Room east, Room south, Room  west){
+  public Room(String name, String beskrivelse){
     this.name=name;
     this.beskrivelse=beskrivelse;
-    this.north=north;
-    this.east=east;
-    this.south=south;
-    this.west=west;
   }
 
   public Room getWest() {
