@@ -22,6 +22,10 @@ public class AdventureEngine {
       }
   }
 
+  public String getLOOK() {
+      return (player.getCurrentRoom()).getBeskrivelse();
+  }
+
   public boolean goNorth(){
     return player.goDirection((player.getCurrentRoom()).getNorth(),player);
   }

@@ -70,7 +70,7 @@ public class AdventureInterface {
           obj.help();
         }
         case "look" -> {
-          System.out.println(engine.getNarrative());
+          System.out.println(engine.getLOOK());
         }
         case "north","n","go north" -> {
           validDirectionFlag=engine.goNorth();
