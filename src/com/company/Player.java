@@ -16,4 +16,12 @@ public class Player {
   public void setCurrentRoom(Room currentRoom) {
     this.currentRoom = currentRoom;
   }
+  public boolean goDirection(Room direction, Player player) {
+    if (!(direction == null)) {
+      player.setCurrentRoom(direction);
+    } else {
+      return false;
+    }
+    return true;
+  }
 }
