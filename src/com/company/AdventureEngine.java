@@ -10,8 +10,16 @@ public class AdventureEngine {
     map.setRoomConnections();
   }
 
-  public String getBeskrivelse(){
-    return (player.getCurrentRoom()).getBeskrivelse();
+  //public String getBeskrivelse()
+  // { return (player.getCurrentRoom()).getBeskrivelse(); }
+
+  public String getNarrative() {
+      if (player.getCurrentRoom().isExplored()) {
+        return (player.getCurrentRoom()).getRecap();
+      } else {
+          (player.getCurrentRoom()).setExplored(true);
+          return (player.getCurrentRoom()).getBeskrivelse();
+      }
   }
 
   public boolean goNorth(){

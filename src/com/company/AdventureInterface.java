@@ -61,7 +61,7 @@ public class AdventureInterface {
     obj.intro();
     obj.playMusic();
     engine.setRoomConnections();
-    System.out.println(engine.getBeskrivelse());
+    System.out.println(engine.getNarrative());
     while (!choice.equalsIgnoreCase("exit")) {
       choice = sc.next().toLowerCase(Locale.ROOT);
       boolean validDirectionFlag = true;
@@ -70,40 +70,41 @@ public class AdventureInterface {
           obj.help();
         }
         case "look" -> {
-          System.out.println(engine.getBeskrivelse());
+          System.out.println(engine.getNarrative());
         }
         case "north","n","go north" -> {
           validDirectionFlag=engine.goNorth();
           if(validDirectionFlag){
-            System.out.println(engine.getBeskrivelse());
+            System.out.println(engine.getNarrative());
           }
         }
         case "east","e","go east" -> {
           validDirectionFlag=engine.goEast();
           if(validDirectionFlag){
-            System.out.println(engine.getBeskrivelse());
+            System.out.println(engine.getNarrative());
           }
         }
         case "south","s","go south" ->{
           validDirectionFlag=engine.goSouth();
           if(validDirectionFlag){
-            System.out.println(engine.getBeskrivelse());
+            System.out.println(engine.getNarrative());
           }
         }
         case "west","w","go west" ->{
           validDirectionFlag=engine.goWest();
           if(validDirectionFlag){
-            System.out.println(engine.getBeskrivelse());
+            System.out.println(engine.getNarrative());
           }
         }
         case "exit" ->{
           System.out.println("exiting game...");}
       }
       if (!validDirectionFlag){
+        //if (Player.getCurrentRoom().getNorth().equals(room8)
+        //System.out.println("The stone door remains closed...");
+        //} else
         System.out.println("Can't go that way");}
-      //if (player.getCurrentRoom()).isExplored();
-      //{return player.getCurrentRoom()).getRecap();
-      //else
+
     }
     }
   }

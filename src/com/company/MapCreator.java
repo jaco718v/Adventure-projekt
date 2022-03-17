@@ -61,6 +61,25 @@ public class MapCreator {
 
     room9.setNorth(room6);
     room9.setWest(room8);
+
+/*
+    private void createItems() {
+      room2[].addItem(new Item(ItemType.ceremonyClub));       // first weapon, hidden until torch is ignited
+      room3[].addItem(new Item(ItemType.snekNCbraSlab));      // for Room 7
+      room4[].addItem(new Item(ItemType.thickVines));         // can't pickup, but used to swing into and floor a zombie
+      room5[].addItem(new Item(ItemType.ironBar, 2));         // trash weapon, too heavy
+      room5[].addItem(new Item(ItemType.sjDagger));           // magic weapon
+      room5[].addItem(new Item(ItemType.sjMedallion));        // healing item
+      room7[].addItem(new Item(ItemType.twoSnekSlab));        // for Room 2
+      room7[].addItem(new Item(ItemType.snakeRod));           // the key for the door, open in Room 2
+      room8[].addItem(new Item(ItemType.threeSnekSlab));      // for Room 3
+      room9[].addItem(new Item(ItemType.torch));              // for igniting in Room2 or 3, lighting Room2, once insight > 2
+                                                              // if (!>2) sout "Hmm... I'm not sure where to use it yet..."
+      room9[].addItem(new Item(Item type.spiralSnekSlab));    // for Room 9, starts in position, but can be moved
+      }
+
+
+*/
   }
 }
 
