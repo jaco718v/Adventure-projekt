@@ -6,8 +6,9 @@ import java.util.Scanner;
 public class AdventureInterface {
 
   public void help() {
-    System.out.println("Your possible option are:\nlook: Get room description again\n" +
-        "North: Go north\nEast: Go east\nSouth: go South \nWest: go west");
+    System.out.println("North: Go north\nEast: Go east\nSouth: Go South \nWest: Go west\n" +
+        "Inventory: Examine items you are carrying,\n" +
+        "and Search: Further investigate the room");
   }
 
   public void intro() {
@@ -61,6 +62,9 @@ public class AdventureInterface {
       }
       if (!validDirectionFlag){
         System.out.println("Can't go that way");}
+      //if (player.getCurrentRoom()).isExplored();
+      //{return player.getCurrentRoom()).getRecap();
+      //else
     }
     }
   }
