@@ -3,14 +3,17 @@ package com.company;
 public class Room {
   private String name;
   private String beskrivelse;
+  private String recap;
   private Room north;
   private Room east;
   private Room south;
   private Room west;
+  private boolean explored;
 
-  public Room(String name, String beskrivelse){
+  public Room(String name, String beskrivelse, String recap){
     this.name=name;
     this.beskrivelse=beskrivelse;
+    this.recap=recap;
   }
 
   public Room getWest() {
@@ -33,6 +36,10 @@ public class Room {
     return beskrivelse;
   }
 
+  public boolean isExplored() { return explored;}
+
+  public String getRecap() { return recap; }
+
   public void setEast(Room east) {
     this.east = east;
   }
@@ -48,4 +55,6 @@ public class Room {
   public void setWest(Room west) {
     this.west = west;
   }
+
+  public void setExplored(boolean explored) { this.explored = explored; }
 }

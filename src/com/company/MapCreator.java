@@ -2,15 +2,38 @@ package com.company;
 
 public class MapCreator {
 
-  Room room1 = new Room("Room 1","A blue room");
-  Room room2 = new Room("Room 2","A green room");
-  Room room3 = new Room("Room 3","A purple room");
-  Room room4 = new Room("Room 4", "A red room");
-  Room room5 = new Room("Room 5", "A brown room");
-  Room room6 = new Room("Room 6", "An orange room");
-  Room room7 = new Room("Room 7", "A pink room");
-  Room room8 = new Room("Room 8", "A yellow room");
-  Room room9 = new Room("Room 9", "turqoise room");
+  Room room1 = new Room("Room 1","You're in the torch-lit entryway of the burial mound. Vines run like snakes across the down-sloping ceiling.\n" +
+          "The air in here feels clammy. The passage narrows slightly as it goes down into the mound, then branches left and right.",
+          "You're back in the entry hallway.");
+  Room room2 = new Room("Room 2","Very little light gets into this room from the opposite side.\n" +
+          "You fumble your way through the room, as your eyes can't really adjust to the darkness\n" +
+          "The room appears to store... some kind of furniture, maybe?",
+          "You're in the cluttered dark room.");
+  Room room3 = new Room("Room 3","There's a lit torch here in the corner! It's nailed to the wall, though...\n" +
+          //if (!SnekNCbraSlabCollected) {
+          "There is a square stone-slab on the floor, next to an indentation on the wall",
+          "You're in the room with the torch on the wall.");
+  Room room4 = new Room("Room 4", "You can't even see half of this room, since part of the mound has collapsed. \n" +
+          "You think you can spot an exit beyond it",
+          "You're in the partially collapsed room.");
+  Room room5 = new Room("Room 5", "You're finally inside the burial chamber.\n" +
+          "It's very warm in here, since the room is flooded with light from a large firepit on the backwall.\n" +
+          "In the middle of the room, stands a gruesome stone altar, complete with one of those, ughh, heart-troughs, in the middle...\n" +
+          "There are four golf-ball-sized holes around the top of it... for draining the blood?... yuck!",
+          "You run back into the burial chamber, and try to shut the door, but it's too late. You're trapped, and the creatures overwhelm you!");
+  Room room6 = new Room("Room 6", "In here, it's so dark, you can barely make out the bizarre-looking edges of the strange fungi, that sprawl across the wall.\n" +
+          "They smell sweet, like flowers, but stronger, and more unpleasant... It almost make you feel dizzy.",
+          "You hold your breath, as you rush past the suspicious fungi.");
+  Room room7 = new Room("Room 7", "A thick cluster of vines hang from the ceiling in the middle of the room\n" +
+          "There's a massive clay jar in the corner." +
+          //if (!inventory[].contains."2SnekSlab) {
+          " A square stone-slab is embedded in the wall. Two Snakes, huh? This one has a hole in the middle... Curious...",
+          "You're in the room with the clay jar.");
+  Room room8 = new Room("Room 8", "A giant stone door blocks the path to the burial chamber\n" +
+          "In the cold air, it looks like it's billowing smoke from it's sides.",
+          "You're back at the stone door.");
+  Room room9 = new Room("Room 9", "A dimly lit room. It seems empty, except for the rocks and pebbles that litter the floor, from a collapsed wall.",
+          "You're back in the dimly lit room.");
 
   public void setRoomConnections(){
     room1.setEast(room2);
