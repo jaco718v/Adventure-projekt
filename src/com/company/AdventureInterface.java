@@ -61,40 +61,63 @@ public class AdventureInterface {
     obj.intro();
     obj.playMusic();
     engine.setRoomConnections();
+    engine.createItems();
     System.out.println(engine.getNarrative());
     while (!choice.equalsIgnoreCase("exit")) {
-      choice = sc.next().toLowerCase(Locale.ROOT);
+      choice = sc.nextLine().toLowerCase();
+      String firstWord = engine.firstWordSplit(choice);
+      String secondWord = engine.secondWordSplit(choice);
       boolean validDirectionFlag = true;
-      switch (choice){
+      switch (firstWord){
         case "help" -> {
           obj.help();
         }
         case "look" -> {
           System.out.println(engine.getLOOK());
         }
-        case "north","n","go north" -> {
+        case "north","n" -> {
           validDirectionFlag=engine.goNorth();
           if(validDirectionFlag){
             System.out.println(engine.getNarrative());
           }
         }
-        case "east","e","go east" -> {
+        case "east","e" -> {
           validDirectionFlag=engine.goEast();
           if(validDirectionFlag){
             System.out.println(engine.getNarrative());
           }
         }
-        case "south","s","go south" ->{
+        case "south","s" ->{
           validDirectionFlag=engine.goSouth();
           if(validDirectionFlag){
             System.out.println(engine.getNarrative());
           }
         }
-        case "west","w","go west" ->{
+        case "west","w" ->{
           validDirectionFlag=engine.goWest();
           if(validDirectionFlag){
             System.out.println(engine.getNarrative());
           }
+        }
+        case "take" ->{
+          if (engine.takeItem(secondWord)){
+            System.out.println("Item was added to your inventory");}
+            else
+            System.out.println("There is no such item in this room");
+
+        }
+        case "drop" ->{
+          if (engine.dropItem(secondWord)){
+            System.out.println("Item was removed from inventory");}
+          else
+            System.out.println("There is no such item in inventory");
+          }
+        case "inventory" -> {
+          if(engine.inventory().size()==0){
+            System.out.println("Inventory is empty");
+          }
+          for(Item item: engine.inventory())
+          System.out.println(item.getItemName());
         }
         case "exit" ->{
           System.out.println("exiting game...");}
@@ -104,7 +127,6 @@ public class AdventureInterface {
         //System.out.println("The stone door remains closed...");
         //} else
         System.out.println("Can't go that way");}
-
     }
     }
   }

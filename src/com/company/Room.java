@@ -1,5 +1,7 @@
 package com.company;
 
+import java.util.ArrayList;
+
 public class Room {
   private String name;
   private String beskrivelse;
@@ -8,6 +10,7 @@ public class Room {
   private Room east;
   private Room south;
   private Room west;
+  private ArrayList<Item> roomItems = new ArrayList<Item>();
   private boolean explored;
 
   public Room(String name, String beskrivelse,String recap){
@@ -58,7 +61,16 @@ public class Room {
   public String getRecap() {
     return recap;
   }
+
   public void setExplored(boolean explored) {
     this.explored = explored;
+  }
+
+  public void addRoomItem(Item roomItem){
+    this.roomItems.add(roomItem);
+  }
+
+  public ArrayList<Item> getRoomItems() {
+    return roomItems;
   }
 }

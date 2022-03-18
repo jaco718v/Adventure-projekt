@@ -48,8 +48,19 @@ public class MapCreator {
   Room room21 = new Room("Room 20","descrp20", "recap" );
   Room room22 = new Room("I don't wanna leave just yet...","I don't wanna leave just yet...", "recap" );
 
+  Item ceremonyClub = new Item("Ceremony Club", "desc");
+  Item snekNCbraSlab = new Item(null,null);
+  Item ironBar = new Item(null, null);
+  Item sjDagger = new Item(null, null);
+  Item sjMedallion = new Item(null, null);        // healing item
+  Item twoSnekSlab = new Item(null, null);        // for Room 2
+  Item snakeRod = new Item(null, null);           // the key for the door, open in Room 2
+  Item threeSnekSlab = new Item(null, null);      // for Room 3
+  Item torch = new Item(null, null);              // for igniting in Room2 or 3, lighting Room2, once insight > 2
+  Item spiralSnekSlab = new Item(null, null);
 
-  public void setRoomConnections(){
+
+  public void setRoomConnections() {
     room0.setWest(room22);
     room0.setNorth(room22);
     room0.setEast(room1);
@@ -122,25 +133,19 @@ public class MapCreator {
 
     room20.setSouth(room10);
     room21.setNorth(room1);
-
-/*
-    private void createItems() {
-      room2[].addItem(new Item(ItemType.ceremonyClub));       // first weapon, hidden until torch is ignited
-      room3[].addItem(new Item(ItemType.snekNCbraSlab));      // for Room 7
-      room4[].addItem(new Item(ItemType.thickVines));         // can't pickup, but used to swing into and floor a zombie
-      room5[].addItem(new Item(ItemType.ironBar, 2));         // trash weapon, too heavy
-      room5[].addItem(new Item(ItemType.sjDagger));           // magic weapon
-      room5[].addItem(new Item(ItemType.sjMedallion));        // healing item
-      room7[].addItem(new Item(ItemType.twoSnekSlab));        // for Room 2
-      room7[].addItem(new Item(ItemType.snakeRod));           // the key for the door, open in Room 2
-      room8[].addItem(new Item(ItemType.threeSnekSlab));      // for Room 3
-      room9[].addItem(new Item(ItemType.torch));              // for igniting in Room2 or 3, lighting Room2, once insight > 2
-                                                              // if (!>2) sout "Hmm... I'm not sure where to use it yet..."
-      room9[].addItem(new Item(Item type.spiralSnekSlab));    // for Room 9, starts in position, but can be moved
-      }
-
-
-*/
   }
-}
+
+  public void createItems(){
+    room2.addRoomItem(ceremonyClub);       // first weapon, hidden until torch is ignited
+    room3.addRoomItem(snekNCbraSlab);      // for Room 7
+    room5.addRoomItem(ironBar);           // trash weapon, too heavy
+    room5.addRoomItem(sjDagger);           // magic weapon
+    room5.addRoomItem(sjMedallion);        // healing item
+    room7.addRoomItem(twoSnekSlab);        // for Room 2
+    room7.addRoomItem(snakeRod);           // the key for the door, open in Room 2
+    room8.addRoomItem(threeSnekSlab);      // for Room 3
+    room9.addRoomItem(torch);              // for igniting in Room2 or 3, lighting Room2, once insight > 2
+    room9.addRoomItem(spiralSnekSlab);    // for Room 9, starts in position, but can be moved
+  }
+  }
 
