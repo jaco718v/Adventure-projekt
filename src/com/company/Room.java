@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Room {
   private String name;
-  private String beskrivelse;
+  private String description;
   private String recap;
   private String search;
   private Room north;
@@ -16,9 +16,20 @@ public class Room {
 
   public Room(String name, String beskrivelse,String search, String recap){
     this.name=name;
-    this.beskrivelse=beskrivelse;
+    this.description =beskrivelse;
     this.search=search;
     this.recap=recap;
+  }
+
+  public Item findItem(String itemName){
+    for(int i = 0;i<getRoomItems().size(); i++) {
+      if (itemName.equalsIgnoreCase(getRoomItems().get(i).getItemName())) {
+        Item itemFound = getRoomItems().get(i);
+        getRoomItems().remove(i);
+        return itemFound;
+      }
+    }
+    return null;
   }
 
   public Room getWest() {
@@ -37,8 +48,8 @@ public class Room {
     return east;
   }
 
-  public String getBeskrivelse() {
-    return beskrivelse;
+  public String getDescription() {
+    return description;
   }
 
   public void setEast(Room east) {

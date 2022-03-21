@@ -30,13 +30,11 @@ public class Player {
     return true;
   }
 
-  public boolean pickUpItem(String itemName){
-    for(int i = 0;i<getCurrentRoom().getRoomItems().size(); i++) {
-      if (itemName.equalsIgnoreCase(getCurrentRoom().getRoomItems().get(i).getItemName())) {
-        inventory.add(getCurrentRoom().getRoomItems().get(i));
-        getCurrentRoom().getRoomItems().remove(i);
+  public boolean takeItem(String itemName){
+    Item itemFound = currentRoom.findItem(itemName);
+    if(itemFound!=null){
+        inventory.add(itemFound);
         return true;
-      }
     }
       return false;
   }
