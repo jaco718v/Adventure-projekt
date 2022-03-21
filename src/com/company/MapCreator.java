@@ -31,7 +31,6 @@ public class MapCreator {
   ArrayList<Item> room22Items = new ArrayList<>();
   ArrayList<Item> room23Items = new ArrayList<>();
 
-
   Room room0 = new Room("Room 0","After discovering his Uncle Wolfgang had departed from Germany in a rush, Gabriel searched manically through the Schloss Ritter library...\n" +
           "After long hours of study, and attempting a purification ritual in the Chapel, Gabriel decides his one and best lead would be the texts that suggest a link between the Gedde tribe, and the one described in Gunther's Journal." +
           "Thankfully, Gabriel has held onto has Moesby's \"American's Repressed\" card... Heh, and it's not like he didn't already overcharge it!" +

@@ -21,6 +21,7 @@ public class Player {
     this.currentRoom=currentRoom;
   }
 
+  public ArrayList<Item> getInventory() { return inventory; }
   public Room getCurrentRoom() {
     return currentRoom;
   }
@@ -49,14 +50,14 @@ public class Player {
   }
   public void takeItem(String soughtItem, ArrayList<Item> roomInventory, ArrayList<Item> playerInventory) {
     Item takenItem = findItem(soughtItem, getCurrentRoom().getRoomItems());
-    inventory().add(takenItem);
-    currentRoom().roomItems().remove(takenItem);
+    inventory.add(takenItem);
+    currentRoom.getRoomItems().remove(takenItem);
   }
 
   public void dropItem(String dropItem, ArrayList<Item> roomInventory, ArrayList<Item> playerInventory) {
-    Item droppedItem = findItem(dropItem, inventory());
-    currentRoom().roomItems().add(droppedItem);
-    inventory().remove(droppedItem);
+    Item droppedItem = findItem(dropItem, inventory);
+    currentRoom.getRoomItems().add(droppedItem);
+    inventory.remove(droppedItem);
   }
 
   public String firstWordSplit(String word) {

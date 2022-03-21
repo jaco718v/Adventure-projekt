@@ -19,15 +19,16 @@ public class AdventureInterface {
   public void intro() { System.out.println("Intro"); }
 
   public static void main(String[] args) {
-    AdventureInterface obj = new AdventureInterface();
     AdventureEngine engine = new AdventureEngine();
+    AdventureInterface obj = new AdventureInterface(engine.getPlayer().getInventory());
+
     Scanner sc = new Scanner(System.in);
     String choice = " ";
 
     obj.intro();
     //obj.playMusic();
     engine.setRoomConnections();
-    engine.createItems();
+    //engine.createItems();
     System.out.println(engine.getNarrative());
     while (!choice.equalsIgnoreCase("exit")) {
       choice = sc.nextLine().toLowerCase();
@@ -43,6 +44,7 @@ public class AdventureInterface {
         }
         case "search" -> {
           System.out.println(engine.getSearch());
+          System.out.println(engine.getPlayer().getCurrentRoom().printRoomInventory());
         }
         case "north","n" -> {
           validDirectionFlag=engine.goNorth();
@@ -69,24 +71,23 @@ public class AdventureInterface {
           }
         }
         case "take" ->{
-          if (player.getCurrentRoom().takeItem(secondWord)){
+          if (engine.getPlayer().takeItem(engine.getPlayer().findItem(secondWord, engine.getPlayer().getCurrentRoom().getRoomItems()))){
             System.out.println("Item was added to your inventory");}
             else
             System.out.println("There is no such item in this room");
-
         }
         case "drop" ->{
-          if (engine.dropItem(secondWord)){
+          if (engine.getPlayer().dropItem(engine.getPlayer().findItem(secondWord, engine.getPlayer().getInventory()))){
             System.out.println("Item was removed from inventory");}
           else
             System.out.println("There is no such item in inventory");
           }
         case "inventory" -> {
-          if(engine.inventory().size()==0){
+          if(engine.getPlayer().getInventory().size()==0){
             System.out.println("Inventory is empty");
           }
-          for(Item item: engine.inventory())
-          System.out.println(item.getItemName());
+          for(Item item: engine.getPlayer().getInventory())
+          System.out.printf(item.getItemName() + "\t");
         }
         case "exit" ->{
           System.out.println("exiting game...");}

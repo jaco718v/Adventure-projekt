@@ -23,6 +23,14 @@ public class Room {
   }
   public void setRoomItems(){ this.roomItems = roomItems; }
 
+  public void printRoomInventory(ArrayList<Item> roomItems) {
+    for (int i = 0; i < roomItems.size(); i++) {
+      if (i %6 == 0) {
+        System.out.printf("\n");
+      }
+      System.out.printf(roomItems.get(i).getItemName() + "\t");
+    }
+  }
   public Room getWest() {
     return west;
   }
@@ -58,6 +66,7 @@ public class Room {
   public void setWest(Room west) {
     this.west = west;
   }
+
   public boolean isExplored() {
     return explored;
   }

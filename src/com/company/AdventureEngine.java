@@ -46,9 +46,9 @@ public class AdventureEngine {
     map.setRoomConnections();
   }
 
-  public void createItems() {
-    map.createItems();
-  }
+  //public void createItems() {
+  //  map.createItems();
+  //}
 
   public String getNarrative() {
     if (player.getCurrentRoom().isExplored()) {
@@ -66,6 +66,8 @@ public class AdventureEngine {
   public String getSearch() {
     return (player.getCurrentRoom()).getSearchString();
   }
+
+  public Player getPlayer() { return player; }
 
   public boolean goNorth() {
     return player.goDirection((player.getCurrentRoom()).getNorth(), player);
