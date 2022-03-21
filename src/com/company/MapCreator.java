@@ -69,15 +69,15 @@ public class MapCreator {
   Room room21 = new Room("Room 20","descrp20", "searchtext","recap");
   Room room22 = new Room("I don't wanna leave just yet...","I don't wanna leave just yet...", "recap" ,null);
 
-  Item ceremonyClub = new Item("Ceremony Club", "desc");
-  Item snekNCbraSlab = new Item(null,null);
-  Item ironBar = new Item(null, null);
-  Item sjDagger = new Item(null, null);
+  Item ceremonialClub = new Item("Ceremonial club", "desc");
+  Item snekNCbraSlab = new Item("Cobra snake slab",null);
+  Item ironBar = new Item("Iron bar", null);
+  Item sjDagger = new Item("sjDagger", null);
   Item sjMedallion = new Item(null, null);        // healing item
-  Item twoSnekSlab = new Item(null, null);        // for Room 2
+  Item twoSnekSlab = new Item("Snake slab2", null);        // for Room 2
   Item snakeRod = new Item(null, null);           // the key for the door, open in Room 2
   Item threeSnekSlab = new Item(null, null);      // for Room 3
-  Item torch = new Item(null, null);              // for igniting in Room2 or 3, lighting Room2, once insight > 2
+  Item torch = new Item("Torch", null);              // for igniting in Room2 or 3, lighting Room2, once insight > 2
   Item spiralSnekSlab = new Item(null, null);
 
 
@@ -157,7 +157,7 @@ public class MapCreator {
   }
 
   public void createItems(){
-    room2.addRoomItem(ceremonyClub);       // first weapon, hidden until torch is ignited
+    room2.addRoomItem(ceremonialClub);       // first weapon, hidden until torch is ignited
     room3.addRoomItem(snekNCbraSlab);      // for Room 7
     room5.addRoomItem(ironBar);           // trash weapon, too heavy
     room5.addRoomItem(sjDagger);           // magic weapon
