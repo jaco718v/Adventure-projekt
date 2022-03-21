@@ -1,5 +1,7 @@
 package com.company;
 
+import java.util.ArrayList;
+
 public class Item {
   private String itemName;
   private String itemDescription;
