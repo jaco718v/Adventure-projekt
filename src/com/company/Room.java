@@ -6,18 +6,22 @@ public class Room {
   private String name;
   private String beskrivelse;
   private String recap;
+  private String searchString;
+  private boolean searched = false;
   private Room north;
   private Room east;
   private Room south;
   private Room west;
-  private ArrayList<Item> roomItems = new ArrayList<Item>();
+  private ArrayList<Item> roomItems = new ArrayList<>();
   private boolean explored;
 
-  public Room(String name, String beskrivelse,String recap){
+  public Room(String name, String beskrivelse, String searchString, String recap, ArrayList<Item> roomItems){
     this.name=name;
     this.beskrivelse=beskrivelse;
     this.recap=recap;
+    this.roomItems=roomItems;
   }
+  public void setRoomItems(){ this.roomItems = roomItems; }
 
   public Room getWest() {
     return west;
@@ -62,12 +66,10 @@ public class Room {
     return recap;
   }
 
+  public String getSearchString() { return searchString; }
+
   public void setExplored(boolean explored) {
     this.explored = explored;
-  }
-
-  public void addRoomItem(Item roomItem){
-    this.roomItems.add(roomItem);
   }
 
   public ArrayList<Item> getRoomItems() {

@@ -6,6 +6,41 @@ import java.util.ArrayList;
 public class AdventureEngine {
   MapCreator map = new MapCreator();
   Player player = new Player(map.room1);
+/*
+  void playMusic(){
+    try
+    {
+      String musicLocation = "src/Dark Art.wav";
+      File musicPath = new File(musicLocation);
+      if (musicPath.exists()) {
+        AudioInputStream audioInput = AudioSystem.getAudioInputStream(musicPath);
+        Clip clip = AudioSystem.getClip();
+        clip.open(audioInput);
+        clip.start();
+        clip.loop(Clip.LOOP_CONTINUOUSLY);
+
+        //JOptionPane.showMessageDialog(null, "hit OK to pause");
+        long clipTimePosition = clip.getMicrosecondPosition();
+        clip.stop();
+
+        //JOptionPane.showMessageDialog(null, "hit OK to resume");
+        clip.setMicrosecondPosition(clipTimePosition);
+        clip.start();
+
+        //JOptionPane.showMessageDialog(null, "hit OK to stop");
+      }
+      else
+      {
+        System.out.println("Can't find file");
+      }
+    }
+    catch (Exception ex)
+    {
+      ex.printStackTrace();
+    }
+  }
+
+ */
 
   public void setRoomConnections() {
     map.setRoomConnections();
@@ -28,6 +63,10 @@ public class AdventureEngine {
     return (player.getCurrentRoom()).getBeskrivelse();
   }
 
+  public String getSearch() {
+    return (player.getCurrentRoom()).getSearchString();
+  }
+
   public boolean goNorth() {
     return player.goDirection((player.getCurrentRoom()).getNorth(), player);
   }
@@ -42,14 +81,6 @@ public class AdventureEngine {
 
   public boolean goWest() {
     return player.goDirection((player.getCurrentRoom()).getWest(), player);
-  }
-
-  public boolean takeItem(String item) {
-    return player.pickUpItem(item);
-  }
-
-  public boolean dropItem(String item) {
-    return player.dropItem(item);
   }
 
   public String firstWordSplit(String word) {
@@ -69,9 +100,6 @@ public class AdventureEngine {
     else return word;
   }
 
-  public ArrayList<Item> inventory(){
-    return player.getInventory();
-  }
 }
 
 
