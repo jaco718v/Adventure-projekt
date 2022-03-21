@@ -75,6 +75,9 @@ public class AdventureInterface {
         case "look" -> {
           System.out.println(engine.getLOOK());
         }
+        case "search" -> {
+          System.out.println(engine.getSearch());
+        }
         case "north","n" -> {
           validDirectionFlag=engine.goNorth();
           if(validDirectionFlag){

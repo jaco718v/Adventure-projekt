@@ -6,6 +6,7 @@ public class Room {
   private String name;
   private String beskrivelse;
   private String recap;
+  private String search;
   private Room north;
   private Room east;
   private Room south;
@@ -13,9 +14,10 @@ public class Room {
   private ArrayList<Item> roomItems = new ArrayList<Item>();
   private boolean explored;
 
-  public Room(String name, String beskrivelse,String recap){
+  public Room(String name, String beskrivelse,String search, String recap){
     this.name=name;
     this.beskrivelse=beskrivelse;
+    this.search=search;
     this.recap=recap;
   }
 
@@ -72,5 +74,9 @@ public class Room {
 
   public ArrayList<Item> getRoomItems() {
     return roomItems;
+  }
+
+  public String getSearch() {
+    return search;
   }
 }

@@ -24,6 +24,10 @@ public class AdventureEngine {
     }
   }
 
+  public String getSearch() {
+    return (player.getCurrentRoom()).getSearch();
+  }
+
   public String getLOOK() {
     return (player.getCurrentRoom()).getBeskrivelse();
   }
