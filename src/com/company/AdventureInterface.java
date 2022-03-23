@@ -24,7 +24,7 @@ public class AdventureInterface {
     obj.intro();
     //engine.playMusic();
     engine.setRoomConnections();
-    engine.createItems();
+    engine.setItems();
     System.out.println(engine.getNarrative());
     while (!choice.equalsIgnoreCase("exit")) {
       choice = sc.nextLine().toLowerCase();
@@ -42,6 +42,20 @@ public class AdventureInterface {
           System.out.println(engine.getSearch());
           for(Item item: engine.player.getCurrentRoom().getRoomItems())
             System.out.println(item.getItemName());
+        }
+        case "eat" ->{
+          eatStatus isEaten = engine.eatItem(secondWord);
+          switch (isEaten){
+            case EDIBLE -> {
+              System.out.println("You ate the "+secondWord);
+            }
+            case INEDIBLE -> {
+              System.out.println("You cannot eat "+secondWord);
+            }
+            case NOTFOUND -> {
+              System.out.println("There is no "+secondWord+" present in your inventory or this room");
+            }
+          }
         }
         case "north","n" -> {
           validDirectionFlag=engine.goNorth();

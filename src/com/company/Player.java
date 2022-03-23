@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Player {
   private Room currentRoom;
-  private int Health = 100;
+  private int health = 100;
   private ArrayList<Item> inventory = new ArrayList<Item>();
   private int insight;                                      // insight increments when:
                                                             // a Slab is currently in the correct socket
@@ -31,22 +31,31 @@ public class Player {
   }
 
   public boolean takeItem(String itemName){
-    Item itemFound = currentRoom.findItem(itemName);
+    Item itemFound = currentRoom.findRoomItem(itemName);
     if(itemFound!=null){
-        inventory.add(itemFound);
+      currentRoom.getRoomItems().remove(itemFound);
+      inventory.add(itemFound);
         return true;
     }
       return false;
   }
 
-  public boolean dropItem(String itemName){
+  public Item findInventoryItem(String itemName){
     for(int i = 0;i< getInventory().size(); i++) {
       if (itemName.equalsIgnoreCase(getInventory().get(i).getItemName())) {
-        getCurrentRoom().addRoomItem(getInventory().get(i));
-        getInventory().remove(i);
-        return true;
+        return inventory.get(i);
       }
     }
+    return null;
+  }
+
+  public boolean dropItem(String itemName){
+    Item itemFound = findInventoryItem(itemName);
+    if(itemFound!=null){
+        getCurrentRoom().addRoomItem(itemFound);
+        getInventory().remove(itemFound);
+        return true;
+      }
     return false;
   }
 
@@ -54,6 +63,18 @@ public class Player {
     return inventory;
   }
 
+  public void eatFood(Food food){
+    health=+food.getEffectHeal();
+    if(health<100){
+      health=100;
+
+    }
+    if(findInventoryItem(food.getItemName())!=null){
+        inventory.remove(food);
+    }
+    else
+      currentRoom.getRoomItems().remove(food);
+  }
 }
 
 

@@ -21,12 +21,10 @@ public class Room {
     this.recap=recap;
   }
 
-  public Item findItem(String itemName){
+  public Item findRoomItem(String itemName){
     for(int i = 0;i<getRoomItems().size(); i++) {
       if (itemName.equalsIgnoreCase(getRoomItems().get(i).getItemName())) {
-        Item itemFound = getRoomItems().get(i);
-        getRoomItems().remove(i);
-        return itemFound;
+        return getRoomItems().get(i);
       }
     }
     return null;

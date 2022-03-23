@@ -45,8 +45,8 @@ public class AdventureEngine {
     map.setRoomConnections();
   }
 
-  public void createItems() {
-    map.createItems();
+  public void setItems() {
+    map.setItems();
   }
 
   public String getNarrative() {
@@ -56,6 +56,21 @@ public class AdventureEngine {
       (player.getCurrentRoom()).setExplored(true);
       return (player.getCurrentRoom()).getDescription();
     }
+  }
+
+  public eatStatus eatItem(String item){
+    Item itemFound =player.findInventoryItem(item);
+    if(itemFound ==null){
+      itemFound = player.getCurrentRoom().findRoomItem(item);
+      if(itemFound ==null){
+        return eatStatus.NOTFOUND;
+      }
+    }
+    if(itemFound instanceof Food){
+      player.eatFood((Food)itemFound);
+      return eatStatus.EDIBLE;
+    }
+    return eatStatus.INEDIBLE;
   }
 
   public String getSearch() {
