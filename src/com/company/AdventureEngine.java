@@ -60,14 +60,16 @@ public class AdventureEngine {
 
   public eatStatus eatItem(String item){
     Item itemFound =player.findInventoryItem(item);
+    ArrayList<Item> foodLocation = player.getInventory();
     if(itemFound ==null){
       itemFound = player.getCurrentRoom().findRoomItem(item);
+      foodLocation = player.getCurrentRoom().getRoomItems();
       if(itemFound ==null){
         return eatStatus.NOTFOUND;
       }
     }
     if(itemFound instanceof Food){
-      player.eatFood((Food)itemFound);
+      player.eatFood(foodLocation,(Food)itemFound);
       return eatStatus.EDIBLE;
     }
     return eatStatus.INEDIBLE;

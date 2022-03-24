@@ -78,16 +78,14 @@ public class Player {
     return inventory;
   }
 
-  public void eatFood(Food food) {
-    health = +food.getEffectHeal();
+  public void eatFood(ArrayList<Item> foodLocation,Food food) {
+    int foodEffekt = food.eatFood(foodLocation,food);
+    health =+ foodEffekt;
     if (health < 100) {
       health = 100;
     }
-    if (findInventoryItem(food.getItemName()) != null) {
-      inventory.remove(food);
-    } else
-      currentRoom.getRoomItems().remove(food);
   }
+
 
   public int getHealth() {
     return health;
