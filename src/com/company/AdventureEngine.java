@@ -73,6 +73,10 @@ public class AdventureEngine {
     return eatStatus.INEDIBLE;
   }
 
+  public hpStatus health(){
+    return player.hpStatus();
+  }
+
   public String getSearch() {
     return (player.getCurrentRoom()).getSearch();
   }

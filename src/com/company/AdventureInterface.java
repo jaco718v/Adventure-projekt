@@ -57,6 +57,16 @@ public class AdventureInterface {
             }
           }
         }
+        case "health" -> {
+          System.out.println("your current health is: "+engine.player.getHealth());
+          switch(engine.health()){
+            case Healthy -> System.out.println("You're in perfect condition");
+            case Okay -> System.out.println("Your injuries are minor");
+            case Injured -> System.out.println("You're quite hurt");
+            case Severe -> System.out.println("You're hurting bad");
+            case Critical -> System.out.println("Your injuries are near-fatal, you might not survive another encounter");
+          }
+        }
         case "north","n" -> {
           validDirectionFlag=engine.goNorth();
           if(validDirectionFlag){

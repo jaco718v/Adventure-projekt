@@ -6,3 +6,11 @@ package com.company;
     NOTFOUND
   }
 
+  enum hpStatus{
+    Healthy,
+    Okay,
+    Injured,
+    Severe,
+    Critical
+  }
+
