@@ -14,3 +14,10 @@ package com.company;
     Critical
   }
 
+  enum attacking{
+    MeleeSwing,
+    FireWeapon,
+    NoAmmo,
+    Empty
+  }
+

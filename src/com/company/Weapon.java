@@ -12,4 +12,5 @@ public abstract class Weapon extends Item {
 
   public abstract int ammoLeft();
 
+  public abstract attacking weaponEffect();
 }

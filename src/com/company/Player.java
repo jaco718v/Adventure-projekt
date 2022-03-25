@@ -6,6 +6,7 @@ public class Player {
   private Room currentRoom;
   private int health = 100;
   private ArrayList<Item> inventory = new ArrayList<Item>();
+  private Weapon equippedWeapon;
   private int insight;                                      // insight increments when:
   // a Slab is currently in the correct socket
   // Inscription over the door is read (permanent + 1)
@@ -86,6 +87,29 @@ public class Player {
     }
   }
 
+  public boolean equipWeapon(String itemName){
+    Item itemFound = findInventoryItem(itemName);
+    if(itemFound instanceof Weapon weapon){
+      if(equippedWeapon!=null){
+        inventory.add(equippedWeapon);
+      }
+      equippedWeapon=weapon;
+      inventory.remove(itemFound);
+      return true;
+    }
+    return false;
+  }
+
+  public attacking attack(){
+    if(equippedWeapon!=null){
+      int damageDealt = equippedWeapon.attack();
+      if(equippedWeapon.ammoLeft()==0){
+        return attacking.NoAmmo;
+      }
+      return equippedWeapon.weaponEffect();
+    }
+    return attacking.Empty;
+  }
 
   public int getHealth() {
     return health;

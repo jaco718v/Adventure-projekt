@@ -19,4 +19,8 @@ public class RangedWeapon extends Weapon{
   public int ammoLeft() {
     return ammo;
   }
+
+  public attacking weaponEffect(){
+    return attacking.FireWeapon;
+  }
 }

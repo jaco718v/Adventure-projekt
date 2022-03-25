@@ -13,4 +13,8 @@ public class MeleeWeapon extends Weapon {
   public int ammoLeft() {
     return -1;
   }
+
+  public attacking weaponEffect(){
+    return attacking.MeleeSwing;
+  }
 }
