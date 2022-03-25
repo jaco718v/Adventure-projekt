@@ -58,24 +58,24 @@ public class AdventureEngine {
     }
   }
 
-  public eatStatus eatItem(String item){
+  public EatCase eatItem(String item){
     Item itemFound =player.findInventoryItem(item);
     ArrayList<Item> foodLocation = player.getInventory();
     if(itemFound ==null){
       itemFound = player.getCurrentRoom().findRoomItem(item);
       foodLocation = player.getCurrentRoom().getRoomItems();
       if(itemFound ==null){
-        return eatStatus.NOTFOUND;
+        return EatCase.NOTFOUND;
       }
     }
     if(itemFound instanceof Food){
       player.eatFood(foodLocation,(Food)itemFound);
-      return eatStatus.EDIBLE;
+      return EatCase.EDIBLE;
     }
-    return eatStatus.INEDIBLE;
+    return EatCase.INEDIBLE;
   }
 
-  public hpStatus health(){
+  public HpCase health(){
     return player.hpStatus();
   }
 
@@ -130,6 +130,18 @@ public class AdventureEngine {
 
   public ArrayList<Item> inventory(){
     return player.getInventory();
+  }
+
+  public AttackCase attack(){
+    return player.attack();
+  }
+
+  public EquipCase equipWeapon(String itemName){
+    return player.equipWeapon(itemName);
+  }
+
+  public Weapon getEquippedWeapon(){
+    return player.getEquippedWeapon();
   }
 }
 

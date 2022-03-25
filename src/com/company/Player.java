@@ -15,19 +15,17 @@ public class Player {
     this.currentRoom = currentRoom;
   }
 
-  public hpStatus hpStatus(){
+  public HpCase hpStatus(){
       if( health==100){
-        return hpStatus.Healthy;}
+        return HpCase.Healthy;}
       else if (health>75){
-        return hpStatus.Okay;}
+        return HpCase.Okay;}
       else if (health>50){
-        return hpStatus.Injured;}
+        return HpCase.Injured;}
       else if (health>25){
-        return hpStatus.Severe;}
-      else return hpStatus.Critical;
+        return HpCase.Severe;}
+      else return HpCase.Critical;
     }
-
-
 
   public Room getCurrentRoom() {
     return currentRoom;
@@ -87,7 +85,7 @@ public class Player {
     }
   }
 
-  public boolean equipWeapon(String itemName){
+  public EquipCase equipWeapon(String itemName){
     Item itemFound = findInventoryItem(itemName);
     if(itemFound instanceof Weapon weapon){
       if(equippedWeapon!=null){
@@ -95,24 +93,31 @@ public class Player {
       }
       equippedWeapon=weapon;
       inventory.remove(itemFound);
-      return true;
+      return EquipCase.EQUIPPED;
     }
-    return false;
+    if(itemFound==null){
+      return EquipCase.NOTFOUND;
+    }
+    return EquipCase.NOTEQUIPPED;
   }
 
-  public attacking attack(){
+  public AttackCase attack(){
     if(equippedWeapon!=null){
-      int damageDealt = equippedWeapon.attack();
       if(equippedWeapon.ammoLeft()==0){
-        return attacking.NoAmmo;
+        return AttackCase.NoAmmo;
       }
+      int damageDealt = equippedWeapon.attack();
       return equippedWeapon.weaponEffect();
     }
-    return attacking.Empty;
+    return AttackCase.Empty;
   }
 
   public int getHealth() {
     return health;
+  }
+
+  public Weapon getEquippedWeapon() {
+    return equippedWeapon;
   }
 }
 

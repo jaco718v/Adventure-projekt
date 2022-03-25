@@ -1,12 +1,12 @@
 package com.company;
 
-  enum eatStatus{
+  enum EatCase {
     EDIBLE,
     INEDIBLE,
     NOTFOUND
   }
 
-  enum hpStatus{
+  enum HpCase {
     Healthy,
     Okay,
     Injured,
@@ -14,10 +14,16 @@ package com.company;
     Critical
   }
 
-  enum attacking{
+  enum AttackCase {
     MeleeSwing,
     FireWeapon,
     NoAmmo,
     Empty
+  }
+
+  enum EquipCase {
+    NOTFOUND,
+    EQUIPPED,
+    NOTEQUIPPED
   }
 

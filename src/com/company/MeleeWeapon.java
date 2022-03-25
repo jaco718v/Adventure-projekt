@@ -2,7 +2,7 @@ package com.company;
 
 public class MeleeWeapon extends Weapon {
 
-  public MeleeWeapon(String shortID, String itemName, String itemDescription, int combatDMG, int ammo){
+  public MeleeWeapon(String shortID, String itemName, String itemDescription, int combatDMG){
     super(shortID,itemName,itemDescription,combatDMG);
   }
 
@@ -14,7 +14,7 @@ public class MeleeWeapon extends Weapon {
     return -1;
   }
 
-  public attacking weaponEffect(){
-    return attacking.MeleeSwing;
+  public AttackCase weaponEffect(){
+    return AttackCase.MeleeSwing;
   }
 }

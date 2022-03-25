@@ -20,7 +20,7 @@ public class RangedWeapon extends Weapon{
     return ammo;
   }
 
-  public attacking weaponEffect(){
-    return attacking.FireWeapon;
+  public AttackCase weaponEffect(){
+    return AttackCase.FireWeapon;
   }
 }

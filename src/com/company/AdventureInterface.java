@@ -44,7 +44,7 @@ public class AdventureInterface {
             System.out.println(item.getItemName());
         }
         case "eat" ->{
-          eatStatus isEaten = engine.eatItem(secondWord);
+          EatCase isEaten = engine.eatItem(secondWord);
           switch (isEaten){
             case EDIBLE -> {
               System.out.println("You ate the "+secondWord);
@@ -108,8 +108,31 @@ public class AdventureInterface {
           if(engine.inventory().size()==0){
             System.out.println("Inventory is empty");
           }
+          else {
           for(Item item: engine.inventory())
           System.out.println(item.getItemName());
+          }
+          if(engine.getEquippedWeapon()!=null){
+            System.out.println("Equipped: "+engine.getEquippedWeapon().getItemName());
+          }
+          else System.out.println("No weapon currently equipped");
+        }
+        case "attack" ->{
+          AttackCase attackCase = engine.attack();
+          switch (attackCase){
+            case FireWeapon -> System.out.println("You fire your weapon blindly, hitting nothing.");
+            case MeleeSwing -> System.out.println("You swing your weapon in the air producing a mildly satisfying sound.");
+            case NoAmmo -> System.out.println("You attempt to fire your weapon, yet nothing happens. It would seem you've run out of ammo.");
+            case Empty -> System.out.println("Bare-handed, you swing your fists through the air.");
+          }
+        }
+        case "equip" ->{
+          EquipCase equipCase = engine.equipWeapon(secondWord);
+          switch (equipCase){
+            case EQUIPPED -> System.out.println("You equipped your "+secondWord);
+            case NOTEQUIPPED -> System.out.println("You cannot equip "+secondWord);
+            case NOTFOUND -> System.out.println("Item not found in inventory");
+          }
         }
         case "exit" ->{
           System.out.println("exiting game...");}
