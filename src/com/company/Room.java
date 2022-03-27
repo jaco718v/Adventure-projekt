@@ -21,6 +21,14 @@ public class Room {
     this.recap=recap;
   }
 
+  public Room(String name, Room north, Room east, Room south, Room west) {    // This one is mainly for the baby, right now
+    this.name=name;
+    this.north=north;
+    this.east=east;
+    this.south=south;
+    this.west=west;
+  }
+
   public Item findRoomItem(String itemName){
     for(int i = 0;i<getRoomItems().size(); i++) {
       if (itemName.equalsIgnoreCase(getRoomItems().get(i).getItemName())) {

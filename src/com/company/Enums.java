@@ -7,16 +7,19 @@ package com.company;
   }
 
   enum HpCase {
-    Healthy,
-    Okay,
+    Unhurt,
+    Bruised,
+    Wounded,
     Injured,
-    Severe,
+    Crippled,
+    Bleeding,
     Critical
   }
 
   enum AttackCase {
     MeleeSwing,
-    FireWeapon,
+    RangedWeapon,
+    ThrownWeapon,
     NoAmmo,
     Empty
   }
@@ -25,5 +28,12 @@ package com.company;
     NOTFOUND,
     EQUIPPED,
     NOTEQUIPPED
+  }
+
+  enum ContainerCase{
+    UNLOCKED,
+    LOCKED,
+    NOTCONTAINER,
+    NOTFOUND
   }
 

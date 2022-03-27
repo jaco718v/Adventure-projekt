@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class AdventureEngine {
   MapCreator map = new MapCreator();
-  Player player = new Player(map.room1);
+  Player player = new Player(map.room0);
 
   /*public void playMusic(){
     try

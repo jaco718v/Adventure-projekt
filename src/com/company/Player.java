@@ -8,22 +8,28 @@ public class Player {
   private ArrayList<Item> inventory = new ArrayList<Item>();
   private Weapon equippedWeapon;
   private int insight;                                      // insight increments when:
-  // a Slab is currently in the correct socket
-  // Inscription over the door is read (permanent + 1)
+  // a Slab is currently in the correct socket (+3)
+  // Inscription over the door is read (permanent + 2)
+  // Coded Scroll decrypted (permanent +1)
+  // room1 is searched (permanent +1)
 
   public Player(Room currentRoom) {
     this.currentRoom = currentRoom;
   }
 
   public HpCase hpStatus(){
-      if( health==100){
-        return HpCase.Healthy;}
-      else if (health>75){
-        return HpCase.Okay;}
-      else if (health>50){
+      if( health>30){
+        return HpCase.Unhurt;}
+      else if (health>26){
+        return HpCase.Bruised;}
+      else if (health>21){
+        return HpCase.Wounded;}
+      else if (health>15){
         return HpCase.Injured;}
-      else if (health>25){
-        return HpCase.Severe;}
+      else if (health>10){
+        return HpCase.Crippled;}
+      else if (health>4){
+        return HpCase.Bleeding;}
       else return HpCase.Critical;
     }
 
@@ -34,6 +40,8 @@ public class Player {
   public void setCurrentRoom(Room currentRoom) {
     this.currentRoom = currentRoom;
   }
+
+  public void setInventory(ArrayList<Item> inventory) { this.inventory = inventory; }
 
   public boolean goDirection(Room direction, Player player) {
     if (!(direction == null)) {

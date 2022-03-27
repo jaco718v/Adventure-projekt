@@ -3,8 +3,8 @@ package com.company;
 public class RangedWeapon extends Weapon{
   private int ammo;
 
-  public RangedWeapon(String shortID, String itemName, String itemDescription, int combatDMG, int ammo){
-    super(shortID,itemName,itemDescription,combatDMG);
+  public RangedWeapon(String shortID,int combatDMG,int ammo,boolean occupant, boolean illegal, String effect,String itemName,String itemDescription){
+    super(shortID, combatDMG, occupant, illegal, effect, itemName, itemDescription);
     this.ammo=ammo;
   }
 
@@ -21,6 +21,6 @@ public class RangedWeapon extends Weapon{
   }
 
   public AttackCase weaponEffect(){
-    return AttackCase.FireWeapon;
+    return AttackCase.RangedWeapon;
   }
 }

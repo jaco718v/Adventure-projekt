@@ -3,8 +3,8 @@ package com.company;
 public abstract class Weapon extends Item {
   protected int combatDMG;
 
-  public Weapon(String shortID, String itemName, String itemDescription, int combatDMG){
-    super(shortID,itemName,itemDescription);
+  public Weapon(String shortID, int combatDMG, boolean occupant, boolean illegal, String effect, String itemName, String itemDescription) {
+    super(shortID, occupant, illegal, effect, itemName, itemDescription);
     this.combatDMG=combatDMG;
   }
 
