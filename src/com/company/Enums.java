@@ -2,6 +2,7 @@ package com.company;
 
   enum EatCase {
     EDIBLE,
+    CONTAMINATED,
     INEDIBLE,
     NOTFOUND
   }
@@ -31,7 +32,7 @@ package com.company;
   }
 
   enum ContainerCase{
-    UNLOCKED,
+    OPENED,
     LOCKED,
     NOTCONTAINER,
     NOTFOUND

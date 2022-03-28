@@ -90,9 +90,15 @@ public class AdventureInterface {
         case "search" -> {
           if (engine.getSearch() != null) {
             System.out.println(engine.getSearch());
-            System.out.println("The room also contains:");
-            for (Item item : engine.player.getCurrentRoom().getRoomItems())
-              System.out.printf("\u001B[30m" + item.getItemName() + "\t\t\u001B[33m");
+            if (!engine.player.getCurrentRoom().getRoomItems().isEmpty()) {
+              System.out.println("The room also contains:");
+              for (PseudoItems pseudo : engine.player.getCurrentRoom().getRoomPseudos()) {
+                System.out.printf("\u001B[30m" + pseudo.getPseudoName() + "\t\t\u001B[33m");
+              }
+              for (Item item : engine.player.getCurrentRoom().getRoomItems()) {
+                System.out.printf("\u001B[30m" + item.getItemName() + "\t\t\u001B[33m");
+              }
+            }
           }
         }
 
@@ -162,7 +168,7 @@ public class AdventureInterface {
           if (engine.takeItem(secondWord)){
             System.out.println("Item was added to your inventory.");}
             else
-            System.out.println("There is no such item in this room.");
+            System.out.println("There is no such item in this room, or that item isn't portable.");
 
         }
 

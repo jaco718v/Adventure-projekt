@@ -11,6 +11,7 @@ public class Room {
   private Room east;
   private Room south;
   private Room west;
+  private ArrayList<PseudoItems> roomPseudos = new ArrayList<PseudoItems>();
   private ArrayList<Item> roomItems = new ArrayList<Item>();
   private boolean explored;
 
@@ -88,9 +89,13 @@ public class Room {
   public void addRoomItem(Item roomItem){
     this.roomItems.add(roomItem);
   }
+  public void addRoomItem(PseudoItems roomItem){ this.roomPseudos.add(roomItem); }
 
   public ArrayList<Item> getRoomItems() {
     return roomItems;
+  }
+  public ArrayList<PseudoItems> getRoomPseudos() {
+    return roomPseudos;
   }
 
   public String getSearch() {

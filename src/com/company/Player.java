@@ -8,6 +8,7 @@ public class Player {
   private ArrayList<Item> inventory = new ArrayList<Item>();
   private Weapon equippedWeapon;
   private int insight;                                      // insight increments when:
+  private int darkSearchCount = 0;
   // a Slab is currently in the correct socket (+3)
   // Inscription over the door is read (permanent + 2)
   // Coded Scroll decrypted (permanent +1)
@@ -16,6 +17,9 @@ public class Player {
   public Player(Room currentRoom) {
     this.currentRoom = currentRoom;
   }
+
+  public int getDarkSearchCount() { return darkSearchCount; }
+  public void setDarkSearchCount() {this.darkSearchCount += 1;}
 
   public HpCase hpStatus(){
       if( health>30){
@@ -84,12 +88,27 @@ public class Player {
   public ArrayList<Item> getInventory() {
     return inventory;
   }
-
+/*
+  public boolean openItem(String itemName) {
+    Item itemFound = findInventoryItem(itemName);
+    if (itemFound != null) {
+      ArrayList<Item> contents = new ArrayList<Item>();
+      for (Item item : (Container) itemFound.getContent()) {
+        inventory.add(item);
+        (Container) itemFound.getContent().remove(item);
+      }
+      Item removed = findInventoryItem(container.getItemName());
+      inventory.remove(removed);
+      return true;
+    }
+    return false;
+  }
+*/
   public void eatFood(ArrayList<Item> foodLocation,Food food) {
-    int foodEffekt = food.eatFood(foodLocation,food);
-    health =+ foodEffekt;
-    if (health < 100) {
-      health = 100;
+    int foodEffect = food.eatFood(foodLocation,food);
+    health += foodEffect;
+    if (health < 30) {
+      health = 30;
     }
   }
 

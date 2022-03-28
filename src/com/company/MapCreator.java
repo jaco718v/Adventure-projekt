@@ -49,11 +49,11 @@ public class MapCreator {
       "You're back in the lounge room");
   Room room12 = new Room("Room 12", "\u001B[40m\u001B[37mVery little light gets into this room from the opposite side. The room is so packed and cluttered, it's difficult to traverse.\n" +
       "You fumble your way through the room, as your eyes can't really adjust to the darkness. The room appears to store... some kind of furniture, maybe?\u001B[33m",
-      "\u001B[40m\u001B[37mThis room is dark. Trying to search it, you stumble and hurt yourself.\u001B[33m", "\u001B[40m\u001B[37mYou're in the cluttered dark room.\u001B[33m");
+      "dark", "\u001B[40m\u001B[37mYou're in the cluttered dark room.\u001B[33m");
   Room room13 = new Room("Room 13", "\u001B[0m\u001B[33mThis room is brightly floodlit with warm flickering light... There's a torch here in the corner! It's nailed to the wall, though...\u001B[40m\n",
       "\u001B[0m\u001B[33mThere is a square stone-slab sitting in a depression in the wall.\u001B[40m", "\u001B[0m\u001B[33mYou're in the room with the torch on the wall.\u001B[40m");
   Room room14 = new Room("Room 14", "\u001B[40m\u001B[37mYou can't see much of this room, it's very dark. You think you can spot an exit beyond it\u001B[33m",
-      "\u001B[40m\u001B[37mYou aren't going to find anything in a room this dark. You trip over a crooked floor tile, and scrape your kneecap. Annoying!\u001B[33m", "\u001B[40m\u001B[37mYou're in a dark, curved room.\u001B[33m");
+      "dark", "\u001B[40m\u001B[37mYou're in a dark, curved room.\u001B[33m");
   Room room15 = new Room("Room 15", "You're finally inside the burial chamber.\n" +
       "It's very warm in here, since the room is flooded with light from a large fire pit on the back wall.\n" +
       "In the middle of the room, stands a gruesome stone altar, complete with one of those, ughh, heart-troughs, in the middle...\n",
@@ -67,19 +67,18 @@ public class MapCreator {
   Room room18 = new Room("Room 18", "A giant stone door blocks the path to a central chamber.", "In the cold air, it looks like it's billowing smoke from it's sides.",
       "You're back at the stone door.");
   Room room19 = new Room("Room 19", "\u001B[40m\u001B[37mThis room is shrouded in darkness...\u001B[33m",
-      "\u001B[40m\u001B[37mTrying to navigate the darkness, you stub your toe on an cracked floor panel. \"Arrgh!\"\u001B[33m",
-      "\u001B[40m\u001B[37mYou're in a dark room.\u001B[33m");
+      "dark","\u001B[40m\u001B[37mYou're in a dark room.\u001B[33m");
 
   Room room20 = new Room("room20", "descrp20", "searchtext", "recap");
   Room room21 = new Room("room21", "descrp20", "searchtext", "recap");
+  Room room22 = new Room("room22", "A variety of racks and other furniture is stored here... of course! The zombies were hiding behind it, impossible to make out in the darkness,", "There's a chest in the corner.", null);
   Room room23 = new Room("room23", "Gabriel repels down the hole, and finds himself in another storage room. The colors of the items immediately show up in the relative darkness of the pit. A selction of their party articles are kept here; costumes, ritual paints, instruments... the works", "There is a part of a broken staircase, that used to lead up to the room above.", "You're in the storage basement.");
-  Room room24 = new Room("room23", "A variety of racks and other furniture is stored here... of course! The zombies were hiding behind it, impossible to make out in the darkness,", "There's a chest in the corner.", null);
   Room room26 = new Room("I don't wanna leave just yet...", "I don't wanna leave just yet...", "recap", null);
 
   /* //Starting inventory(3) options
    Item rope = new Item("Rope", -1,false,true,false,"use in room 19, and/or 9","Nylon Rope", "Gabriel brought this with him from Schloss Ritter!? Seems to me, he must be an experienced adventurer!");
    Item notes = new Item("Notebook", -1,false,false, false,"decrypt scroll, create picture item when 'examine notes'","Gabriel's Notebook","These are Gabriel's research notes, a diary of sorts, of his investigation of the Voodoo Murders case. It also contains bit of Gunther's account of the Gedde tribe, and Moonbeam's voodoo ciphers. It's gonna make the book a bestseller!");
-   Food fluid = new Food("Tequila", -1,true,true,false,"open, use lemon and salt on rusted grate","Tequila Travel Box Set", "Gabriel picked this up from the Tax-Free store at the airport. Haha, even now, he still thinks only of partiying?");
+   Food fluid = new Food("Tequila", -1,true,true,false,"open, use lemon and salt on rusted grate","Tequila Travel Box Set", "");
 //Semi-useful
    Food food = new Food("Sausages", -1,true,false,false,"+2 Health","Cold \"Weisswurst\"", "Gabriel bought these in Munich. They have, naturally, long gone cold. Gabriel isn't sure, if he should eat them, now...");
    Item charm1 = new Item("Charm", -1,true,false,false,"15% chance of teleport to lower room number, when attacked","Wölpertinger Tail Charm", "Gabriel met a street-peddler in Munich... Now, he is the lucky owner, of a \"a real Wölpertinger tail\"... heh, whatever that is! This voodoo, gris-gris nonsense must've gotten to his head!");
@@ -99,49 +98,60 @@ public class MapCreator {
 //----------------------------------------------------------------------------------
 //in Dungeon
    Item picture = new Item("Picture",-1, false,false,false, "adds to currentRoom, when 'examine Notes'","Picture of Snake Mound","A sun-worshipper burial site in Africa... Huh. It looks almost like the one Gabriel is exploring.");
-   Item remainz = new Item("Remains", -1, false,true,true,"none","Tetelo's Remains", null);
-   Item bonez = new Item("Bones", 2,true,false,false,"none","Animal Bones","...at least, you THINK, these are animal bones.");
-   Item grill = new Item("Grate", -1, true, false,true, "can't take, only, open, use Tequila Box, consumes Grate in room 20/21","Rusted Grate", null);
 */
-   //ThrownWeapon sRock = new ThrownWeapon("Rock", 2,false,false,"none","Small Rock", "It's like a rock. Only smaller.");
-   //ThrownWeapon bRock = new ThrownWeapon("Rock", 4,true,false, "none","Rock","It's a rock");
-   Item rock = new Item("Rock", true,true, "none","Rock", null);
+    PseudoItems remainz = new PseudoItems("Remains", "Tetelo's Remains");
+    PseudoItems grill = new PseudoItems("Grate", "Rusted Grate");
+    PseudoItems quarry = new PseudoItems("Rockpile", "Pile of rocks");
+    PseudoItems jar = new PseudoItems("Clay Jar", "Huge Ceramic Jar");
+
+    Item bonez = new Item("Bones", true,false,"none","Animal Bones","...at least, you THINK, these are animal bones.");
+
+    //ThrownWeapon sRock = new ThrownWeapon("Rock", 2,false,false,"none","Small Rock", "It's like a rock. Only smaller.");
+    //ThrownWeapon bRock = new ThrownWeapon("Rock", 4,true,false, "none","Rock","It's a rock");
+    Item rock = new Item("Rock", true,true, "none","Rock", null);
             //  When player.inventory().contains [Item] rock, destroy and replace with (%2==0) sRock or bRock.
-   Food waakye = new Food("Stew", true,false,"1 Health, 5 poisonDMG","Bean Stew","A stew containing beans, rice, pasta, and meat, and some ingredients Gabriel doesn't recognise. It's gone cold.", 1,5);
+    Food waakye = new Food("Stew", true,false,"1 Health, 5 poisonDMG","Bean Stew","A stew containing beans, rice, pasta, and meat, and some ingredients Gabriel doesn't recognise. It's gone cold.", 1,5);
 
-   Container box = new Container("Coffin",true,true,"can open, is empty, sout ...contains nothing of interest, at the moment", "Sèkey Madoulè","It's a small ritual coffin, the size of a large handbag, used for voodoo rituals, especially in sacrificial rites.");
-   Item pot = new Item("Kiln", true,true,"none","Kiln (with Pestle)","Pressumeably, the cult would use this to grind the plants or roots, they make their drugs from. It is empty.");
-   Item mask1 = new Item("Mask", false,true,"if inventory.contains(mask2) {setOccupant}", "Lion Mask","\"A Lion mask! Hah. That's what I should have gone as, for the conclave.\"");
-   Item mask2 = new Item("Mask", false,true,"if inventory.contains(mask1) {setOccupant}", "Snake Mask","A snake mask, not unlike \"good ol' Jerry\". \"Brother Snake\" might have been too obvious for a disguise, though.");
-   Item robe = new Item("Gown", false,false,"valuable: 40 $, if inventory.contains(costume) {toggleOccupant}\"","Tribal Gown", "A simple, long tribal dress. Nothing fancy, but it looks old. Could be valuable.");
-   Item costume = new Item("Dress", false,false,"valuable: 65 $, if inventory.contains(robe) {toggleOccupant}","Totemic Animal Dress","A ritualistic gown, made with dark fur from some animal... It seems to be part of a set with the wolf mask.");
-   Item gourd = new Item("Gourd",false,false,"valuable: 75 $","Ritual Gourd","An ason, an instrument similar to the maraca, a ritual rattle used in trance-related voodoun practices.");
-   Item blood = new Item("Jar", true,true,"none","Harou Of Bloodpaint","It's one of those special jars, the voodoo cult uses to store ritual paint in, for making their vèvès.");
-   Item pouch = new Item("Powder", true,false,"use with mask1 in inventory, for 1 extra sout","Pouch of Powder","This is the hypnotic drug, Dr. John blew in Gabriel's face, during the bayou conclave, to weaken his spirit for Loa possesssion... Powerful stuff. It ought to be illegal!");
-   Item drum = new Item("Drum", true,true,"none","Rada Drum","It's a simple animal skin drum, used in voudoun ritual practices. And, as Gabriel learned, also, as an encryption device for secret cult communiquès.");
+    Container set = new Container("Boxset",true,false, "none","Tequila Set", "Gabriel picked this up from the Tax-Free store at the airport. Haha, even now, he still thinks only of partiying?");
+    //ThrownWeapon glass = new ThrownWeapon("Glass", false, false, "none", "Shotglass", "There were two of these in the Tequila Box Set. As if Gabriel wouldn't rather drink from the bottle!");
+    RangedWeapon bottle = new RangedWeapon("Tequila", 2, izer.nextInt(6)+3,false, false,"none","Bottle of Tequila","Party time! I'd thought Gabriel would prefer more of a... \"guido\" kind of cocktail.");
+    Item juice = new Item("Lemon", false,false, "none","Lemon Juice Dispenser", "This came in the Tequila Box Set... What is the order now, again? Salt first, then lemon, then... no...");
+    Item salt = new Item("Salt", false,false,"none","Salt Shaker", "This small salt shaker was also included in the Tequila Box Set. It is, what you'd expect. Table salt in a cheap plastic dispenser.");
 
-   Container baobShell = new Container("Fruit", true,false, "+4 Health", "Strange Fruit", "This large fruit has a hard brown shell, with a fuzzy surface.");
-   Food baobab = new Food("Fruit", true,false, "+4 Health", "Strange Fruit", "This large fruit has a hard brown shell, with a fuzzy surface. Breaking it open revealed the white endocarp inside,\nit looks like a mix of a coconut and a mango. It smells okay.",4,0);
-   RangedWeapon ceremonyClub = new RangedWeapon ("Club",3,izer.nextInt(5)+2,false,false,"valuable: 60 $","Ceremonial Club", "It is old, for sure. It seems to be for ritualistic practice, rather than a weapon, and doesn't have much heft to it.");
-   Item codedScroll = new Item("Scroll", false,false,"decryption minigame:","Coded Scroll", "These strange markings seem familiar... Yes, Gabriel thinks this code IS similar, to the one he saw in St.Louis Cemetery #1.");
+    Container box = new Container("Coffin",true,true,"can open, is empty, sout ...contains nothing of interest, at the moment", "Sèkey Madoulè","It's a small ritual coffin, the size of a large handbag, used for voodoo rituals, especially in sacrificial rites.");
+    Item pot = new Item("Kiln", true,true,"none","Kiln (with Pestle)","Pressumeably, the cult would use this to grind the plants or roots, they make their drugs from. It is empty.");
+    Item mask1 = new Item("Mask", false,true,"if inventory.contains(mask2) {setOccupant}", "Lion Mask","\"A Lion mask! Hah. That's what I should have gone as, for the conclave.\"");
+    Item mask2 = new Item("Mask", false,true,"if inventory.contains(mask1) {setOccupant}", "Snake Mask","A snake mask, not unlike \"good ol' Jerry\". \"Brother Snake\" might have been too obvious for a disguise, though.");
+    Item robe = new Item("Gown", false,false,"valuable: 40 $, if inventory.contains(costume) {toggleOccupant}\"","Tribal Gown", "A simple, long tribal dress. Nothing fancy, but it looks old. Could be valuable.");
+    Item costume = new Item("Dress", false,false,"valuable: 65 $, if inventory.contains(robe) {toggleOccupant}","Totemic Animal Dress","A ritualistic gown, made with dark fur from some animal... It seems to be part of a set with the wolf mask.");
+    Item gourd = new Item("Gourd",false,false,"valuable: 75 $","Ritual Gourd","An ason, an instrument similar to the maraca, a ritual rattle used in trance-related voodoun practices.");
+    Item blood = new Item("Jar", true,true,"none","Harou Of Bloodpaint","It's one of those special jars, the voodoo cult uses to store ritual paint in, for making their vèvès.");
+    Item pouch = new Item("Powder", true,false,"use with mask1 in inventory, for 1 extra sout","Pouch of Powder","This is the hypnotic drug, Dr. John blew in Gabriel's face, during the bayou conclave, to weaken his spirit for Loa possesssion... Powerful stuff. It ought to be illegal!");
+    Item drum = new Item("Drum", true,true,"none","Rada Drum","It's a simple animal skin drum, used in voudoun ritual practices. And, as Gabriel learned, also, as an encryption device for secret cult communiquès.");
 
-   MeleeWeapon snekRod = new MeleeWeapon("Rod", 4,false,false,"key for the lock, room12","Snake Rod", "An intricate cast, from an unfamiliar, lightweight dark metal. It's design looks like two intertwining snakes... Something about this strange item, feels... disturbing.");
-   Item skulSlab = new Item("Slab", false,true,"keystone1","Skull Slab", "A square, heavy stone slab. It features a prominent skull design, but there's a hole through the slab, in the right eye socket.");
-   Item skulSnekSlab = new Item("Slab", false,true,"keystone3","Skull & Snake Slab", "A square, heavy stone slab. It is decorated with the carving of a snake, coiling itself around a skull.");
-   Item snekSkulSlab = new Item("Slab", false,true,"keystone2","Snake & Skull Slab", "A square, heavy stone slab. The front is adorned with a prominent skull, with a snake slithering through the eye sockets");
-   //ThrownWep torch = new ThrownWep("Torch", 1,true,true,"light room 12 once, then die out","Empty Torch", "\"Ahh, shucks, the canister is completely dry... The wick still feels oily, though!\" It may yet burn, but not for very long.\nGabriel is thinking, he would have brought his own torch, if there had been any at Schloss Ritter.");
-   // the torch should disappear upon use, so it's illegal
+    Container baobShell = new Container("Fruit", true,false, "+4 Health", "Strange Fruit", "This large fruit has a hard brown shell, with a fuzzy surface.");
+    Food baobab = new Food("Fruit", true,false, "+4 Health", "Strange Fruit", "This large fruit has a hard brown shell, with a fuzzy surface. Breaking it open revealed the white endocarp inside,\nit looks like a mix of a coconut and a mango. It smells okay.",4,0);
+    RangedWeapon ceremonyClub = new RangedWeapon ("Club",3,izer.nextInt(5)+2,false,false,"valuable: 60 $","Ceremonial Club", "It is old, for sure. It seems to be for ritualistic practice, rather than a weapon, and doesn't have much heft to it.");
+    Item codedScroll = new Item("Scroll", false,false,"decryption minigame:","Coded Scroll", "These strange markings seem familiar... Yes, Gabriel thinks this code IS similar, to the one he saw in St.Louis Cemetery #1.");
 
-   MeleeWeapon liftingBar = new MeleeWeapon("Bar", 7,false,false,"prepares eventEntity(room15)","Iron Bar", "A heavy iron bar. Whew... It reminds Gabriel, that he hasn't been using his gym membership in months... It is slightly rusted.");
-   MeleeWeapon sjKnife = new MeleeWeapon("Dagger", 5,false,false,"damage boost when 'equip'","Schattenjäger Dagger", "A Ritter family heirloom. It doesn't look like much, certainly nothing like St. George's sword... I guess it'll have to do.");
-   //Talisman sjMedallion = new Talisman("Talisman", 3,false,false,"heals up to 11 Health, cures venom, dagger boost","Schattenjäger Talisman", "Now, this is more like it. A relief of a lion fighting a snake adorns the front of the medallion.\n" +
+    MeleeWeapon snekRod = new MeleeWeapon("Rod", 4,false,false,"key for the lock, room12","Snake Rod", "An intricate cast, from an unfamiliar, lightweight dark metal. It's design looks like two intertwining snakes... Something about this strange item, feels... disturbing.");
+    Item skulSlab = new Item("Slab", false,true,"keystone1","Skull Slab", "A square, heavy stone slab. It features a prominent skull design, but there's a hole through the slab, in the right eye socket.");
+    Item skulSnekSlab = new Item("Slab", false,true,"keystone3","Skull & Snake Slab", "A square, heavy stone slab. It is decorated with the carving of a snake, coiling itself around a skull.");
+    Item snekSkulSlab = new Item("Slab", false,true,"keystone2","Snake & Skull Slab", "A square, heavy stone slab. The front is adorned with a prominent skull, with a snake slithering through the eye sockets");
+    //ThrownWep torch = new ThrownWep("Torch", 1,true,true,"light room 12 once, then die out","Empty Torch", "\"Ahh, shucks, the canister is completely dry... The wick still feels oily, though!\" It may yet burn, but not for very long.\nGabriel is thinking, he would have brought his own torch, if there had been any at Schloss Ritter.");
+    // the torch should disappear upon use, so it's illegal
+
+    MeleeWeapon liftingBar = new MeleeWeapon("Bar", 7,false,false,"prepares eventEntity(room15)","Iron Bar", "A heavy iron bar. Whew... It reminds Gabriel, that he hasn't been using his gym membership in months... It is slightly rusted.");
+    MeleeWeapon sjKnife = new MeleeWeapon("Dagger", 5,false,false,"damage boost when 'equip'","Schattenjäger Dagger", "A Ritter family heirloom. It doesn't look like much, certainly nothing like St. George's sword... I guess it'll have to do.");
+    //Talisman sjMedallion = new Talisman("Talisman", 3,false,false,"heals up to 11 Health, cures venom, dagger boost","Schattenjäger Talisman", "Now, this is more like it. A relief of a lion fighting a snake adorns the front of the medallion.\n" +
 //         "It looks blocky, it's really thick, and seems to be of solid gold... Whoa, certainly weighs like solid gold, too...\n" +
 //         "I'm gonna break my back, wearing this thing!... but jokes aside, there is true power in this amulet. Gabriel can feel it affecting him, when he holds it.");
 
-   Item jewel1 = new Item("Ruby",false,false,"valuable: 5.800 $, cursed, permanent lose 1 insight if touched, 50/50 to receive when taking illegal Item from room23","Teardrop Ruby","A beautiful blood red stone in a teardrop cut. Undoubtedly quite valuable... Gabriel hopes for the eventual buyer, the jewel isn't cursed.");
-   Item jewel2 = new Item("Saphire",false,false,"valuable: 6.600 $, 50/50 to receive when taking illegal Item from room23","Teardrop Saphire","A beautiful deep blue stone in a teardrop cut. Undoubtedly quite valuable.");
-   Item jewel3 = new Item("Belt",false,false,"valuable: 2.250 $, found behind Grate","Snakescale Belt","A belt in a shimmering snakescale-like design, with an elaborate emerald buckle. Undoubtedly quite valuable.");
-   Item jewel4 = new Item("Coin", false,false,"valuable: 175-240 $, found from random Event (multiples possible).", "Ancient Tribal Coin","This gold coin is obviously ancient... And probably rare. Undoubtedly quite valuable.");
+    Item jewel1 = new Item("Ruby",false,false,"valuable: 5.800 $, cursed, permanent lose 1 insight if touched, 50/50 to receive when taking illegal Item from room23","Teardrop Ruby","A beautiful blood red stone in a teardrop cut. Undoubtedly quite valuable... Gabriel hopes for the eventual buyer, the jewel isn't cursed.");
+    Item jewel2 = new Item("Saphire",false,false,"valuable: 6.600 $, 50/50 to receive when taking illegal Item from room23","Teardrop Saphire","A beautiful deep blue stone in a teardrop cut. Undoubtedly quite valuable.");
+    Item jewel3 = new Item("Belt",false,false,"valuable: 2.250 $, found behind Grate","Snakescale Belt","A belt in a shimmering snakescale-like design, with an elaborate emerald buckle. Undoubtedly quite valuable.");
+    Item jewel4 = new Item("Coin", false,false,"valuable: 175-240 $, found from random Event (multiples possible).", "Ancient Tribal Coin","This gold coin is obviously ancient... And probably rare. Undoubtedly quite valuable.");
+
 
   public void setRoomConnections() {
     room0.setWest(room26);
@@ -219,20 +229,24 @@ public class MapCreator {
     room21.setNorth(room1);
     //room23.setUP(room9);
   }
-
-
-    public void setItems() {
+  public void setItems() {
         room0.addRoomItem(baobShell);
-        //room0.addRoomItem(bonez);
+        room0.addRoomItem(bonez);
 
         room5.addRoomItem(rock);
         room9.addRoomItem(rock);
         //room9.addRoomItem(sRock);
-        //room10.addRoomItem(rock);   everytime room10 is entered
-        //room20.addRoomItem(rock);   everytime room20 is entered
-        //room21.addRoomItem(sRock);
+        room10.addRoomItem(rock);   //everytime room10 is entered
+        room20.addRoomItem(rock);   //everytime room20 is entered
+        room21.addRoomItem(rock);
 
-        //room6.addRoomItem(ceremonyClub);
+        room21.addRoomItem(grill);
+        room20.addRoomItem(grill);
+        room20.addRoomItem(quarry);
+        room17.addRoomItem(jar);
+
+        room16.addRoomItem(bonez);
+        room6.addRoomItem(ceremonyClub);
         room8.addRoomItem(baobShell);
         room11.addRoomItem(codedScroll);
 
@@ -242,18 +256,18 @@ public class MapCreator {
         room7.addRoomItem(snekSkulSlab);
         //room9.addRoomItem(torch);             // for igniting in room12 or 13, for room12 eventEntity, once insight > 5
 
-        //room15.addRoomItem(liftingBar);
-        //room15.addRoomItem(liftingBar);
+        room15.addRoomItem(liftingBar);
+        room15.addRoomItem(liftingBar);
         //room15.addRoomItem(sjKnife);        // Received from room18 eventEntity "Uncle Wolfgang"
         //room15.addRoomItem(sjMedallion);    // Received from room15 eventEntity "...and open sesame!"
-/*
+
         room1.addRoomItem(set);
         set.addContainedItem(bottle);
         set.addContainedItem(salt);
         set.addContainedItem(juice);
-        set.addContainedItem(glass);
-        set.addContainedItem(glass);
-*/
+        //set.addContainedItem(glass);
+        //set.addContainedItem(glass);
+
         room23.addRoomItem(box);
         room23.addRoomItem(pot);
         room23.addRoomItem(mask1);
