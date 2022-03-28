@@ -72,7 +72,7 @@ public class MapCreator {
   Room room21 = new Room("room21", "descrp20", "searchtext", "recap");
   Room room22 = new Room("I don't wanna leave just yet...", "I don't wanna leave just yet...", "recap", null);
   Room room23 = new Room("room23", "Gabriel repels down the hole, and finds himself in another storage room. The colors of the items immediately show up in the relative darkness of the pit. A selction of their party articles are kept here; costumes, ritual paints, instruments... the works", "There is a part of a broken staircase, that used to lead up to the room above.", "You're in the storage basement.");
-  
+
   /* //Starting inventory(3) options
    Item rope = new Item("Rope", -1,false,true,false,"use in room 19, and/or 9","Nylon Rope", "Gabriel brought this with him from Schloss Ritter!? Seems to me, he must be an experienced adventurer!");
    Item notes = new Item("Notebook", -1,false,false, false,"decrypt scroll, create picture item when 'examine notes'","Gabriel's Notebook","These are Gabriel's research notes, a diary of sorts, of his investigation of the Voodoo Murders case. It also contains bit of Gunther's account of the Gedde tribe, and Moonbeam's voodoo ciphers. It's gonna make the book a bestseller!");

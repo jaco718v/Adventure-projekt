@@ -134,6 +134,18 @@ public class AdventureInterface {
             case NOTFOUND -> System.out.println("Item not found in inventory");
           }
         }
+        case "ammo" ->{
+          if(engine.player.getEquippedWeapon()!=null){
+          int weaponAmmo = engine.player.getEquippedWeapon().ammoLeft();
+          if(weaponAmmo>=0)
+          System.out.println("Current ammo count is: "+weaponAmmo);
+          else
+            System.out.println("Current weapon does not use ammo");
+          }
+          else {
+            System.out.println("You have no weapon equipped");
+          }
+        }
         case "exit" ->{
           System.out.println("exiting game...");}
       }
