@@ -101,7 +101,6 @@ public class AdventureInterface {
             }
           }
         }
-
         case "eat" ->{
           EatCase isEaten = engine.eatItem(secondWord);
           switch (isEaten){
@@ -116,7 +115,6 @@ public class AdventureInterface {
             }
           }
         }
-
         case "health" -> {
           System.out.println("your current health is: "+engine.player.getHealth());
           switch(engine.health()){
@@ -129,7 +127,6 @@ public class AdventureInterface {
             case Critical -> System.out.println("\u001B[31mGabriel's injuries are near-fatal, he is not long for this world...");
           }
         }
-
         case "north","n" -> {
           validDirectionFlag=engine.goNorth();
           if(validDirectionFlag){
@@ -171,14 +168,12 @@ public class AdventureInterface {
             System.out.println("There is no such item in this room, or that item isn't portable.");
 
         }
-
         case "drop" ->{
           if (engine.dropItem(secondWord)){
             System.out.println("Item has been dropped.");}
           else
-            System.out.println("There is no such item in inventory.");
-        }
-
+            System.out.println("There is no such item in inventory");
+          }
         case "inventory" -> {
           if(engine.inventory().size()==0){
             System.out.println("Inventory is empty");
@@ -190,10 +185,8 @@ public class AdventureInterface {
           if(engine.getEquippedWeapon()!=null){
             System.out.println("Equipped: "+engine.getEquippedWeapon().getItemName());
           }
-          else System.out.println();
-            System.out.println("No weapon currently equipped");
+          else System.out.println("No weapon currently equipped");
         }
-
         case "attack" ->{
           AttackCase attackCase = engine.attack();
           switch (attackCase){
@@ -210,6 +203,18 @@ public class AdventureInterface {
             case EQUIPPED -> System.out.println("You equipped your "+secondWord);
             case NOTEQUIPPED -> System.out.println("You cannot equip "+secondWord);
             case NOTFOUND -> System.out.println("Item not found in inventory");
+          }
+        }
+        case "ammo" ->{
+          if(engine.player.getEquippedWeapon()!=null){
+            int weaponAmmo = engine.player.getEquippedWeapon().ammoLeft();
+            if(weaponAmmo>=0)
+              System.out.println("Current ammo count is: "+weaponAmmo);
+            else
+              System.out.println("Current weapon does not use ammo");
+          }
+          else {
+            System.out.println("You have no weapon equipped");
           }
         }
         case "quit" ->{
