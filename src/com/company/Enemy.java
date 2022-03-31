@@ -7,7 +7,7 @@ public class Enemy {
   private String name;
   private Weapon equippedWeapon;    //Only melee weapons for enemies.
   private boolean talisman = false;
-  private CombatCase EnemyAction;
+  private CombatOption EnemyAction;
 
   public Enemy(int health, String name, Weapon equippedWeapon){
     this.health=health;
@@ -15,7 +15,7 @@ public class Enemy {
     this.equippedWeapon=equippedWeapon;
   }
 
-  public CombatCase attack(boolean enemyBlockFlag){
+  public CombatOption attack(boolean enemyBlockFlag){
     Random random = new Random();
     int number;
     if(!talisman){
@@ -23,13 +23,13 @@ public class Enemy {
     else{
       number =(random.nextInt(15)+1);}
     switch (number){
-      case 1,2,3 ->{ EnemyAction = CombatCase.Acute;}
-      case 4,5,6,7,8 ->{ EnemyAction = CombatCase.Brutal;}
-      case 9,10,11,12->{ EnemyAction = CombatCase.Cautious;}
+      case 1,2,3 ->{ EnemyAction = CombatOption.Acute;}
+      case 4,5,6,7,8 ->{ EnemyAction = CombatOption.Brutal;}
+      case 9,10,11,12->{ EnemyAction = CombatOption.Cautious;}
       case 13,14,15 ->{
-        if(enemyBlockFlag){EnemyAction = CombatCase.Counter;}
+        if(enemyBlockFlag){EnemyAction = CombatOption.Counter;}
         else{
-        EnemyAction =  CombatCase.Block;}}
+        EnemyAction =  CombatOption.Block;}}
     }
     return EnemyAction;
   }
@@ -55,7 +55,7 @@ public class Enemy {
     return equippedWeapon.attack();
   }
 
-  public CombatCase getEnemyAction() {
+  public CombatOption getEnemyAction() {
     return EnemyAction;
   }
 

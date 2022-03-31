@@ -148,14 +148,14 @@ public class Player {
     return AttackCase.Empty;
   }
 
-  public CombatResult combat(CombatCase attackType){
-    if(evadeFlag && attackType==CombatCase.Flee){
+  public CombatResult combat(CombatOption attackType){
+    if(evadeFlag && attackType== CombatOption.Flee){
       return CombatResult.FleeSucces;
     }
     CombatResult result = combatDecider(attackType);
     switch (result){
-      case Succes -> getCurrentRoom().getRoomEnemies().get(0).takeDamage(attack());
-      case BrutalSucces -> getCurrentRoom().getRoomEnemies().get(0).takeDamage(attack(),3);
+      case Succes -> damageEnemy();
+      case BrutalSucces -> damageEnemy(3);
       case Loss -> takeDamage();
       case BrutalLoss -> takeDamage(3);
     }
@@ -177,8 +177,8 @@ public class Player {
     return result;
   }
 
-  public CombatResult combatDecider(CombatCase attackAction){
-  CombatCase enemyAction = currentRoom.getRoomEnemies().get(0).attack(enemyBlockFlag);
+  public CombatResult combatDecider(CombatOption attackAction){
+  CombatOption enemyAction = currentRoom.getRoomEnemies().get(0).attack(enemyBlockFlag);
     switch (attackAction) {
       case Acute -> {
         switch (enemyAction) {
@@ -235,13 +235,18 @@ public class Player {
     return null;
   }
 
-  public int attack(){
-    return equippedWeapon.attack();
+  public void damageEnemy(){
+    currentRoom.getRoomEnemies().get(0).takeDamage(equippedWeapon.attack());
+  }
+
+  public void damageEnemy(int brutal){
+    currentRoom.getRoomEnemies().get(0).takeDamage(equippedWeapon.attack()+brutal);
   }
 
   public int getWeaponDamage(){
     return equippedWeapon.getWeaponDMG();
   }
+
 
   public void takeDamage(){
     health-=currentRoom.getRoomEnemies().get(0).enemyAttack();

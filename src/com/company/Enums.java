@@ -17,7 +17,7 @@ package com.company;
     Critical
   }
 
-  enum CombatCase {
+  enum CombatOption {
     Acute,
     Brutal,
     Cautious,

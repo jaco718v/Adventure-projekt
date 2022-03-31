@@ -199,8 +199,8 @@ public class AdventureInterface {
             case EnemyPresent -> {
               System.out.println("You engage the enemy "+engine.getRoomEnemy().getName());
               while(engine.player.getCurrentRoom().getRoomEnemies().size() >0 && !engine.player.isFleeFlag()){
-              CombatCase choice1 = engine.combatRandomChoice1();
-              CombatCase choice2 = choice1;
+              CombatOption choice1 = engine.combatRandomChoice1();
+              CombatOption choice2 = choice1;
               while (choice2 == choice1) {
                 choice2 = engine.combatRandomChoice1();
               }
@@ -238,7 +238,7 @@ public class AdventureInterface {
               } else if (attackChoice == 2) {
                 result = engine.combat(choice2);
               } else {
-                result = engine.combat(CombatCase.Flee);
+                result = engine.combat(CombatOption.Flee);
               }
               System.out.println("The enemy choice was "+engine.getRoomEnemy().getEnemyAction());
               switch (result) {
