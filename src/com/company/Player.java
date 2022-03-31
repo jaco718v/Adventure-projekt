@@ -4,11 +4,17 @@ import java.util.ArrayList;
 
 public class Player {
   private Room currentRoom;
-  private int health = 100;
+  private int health = 30;
   private ArrayList<Item> inventory = new ArrayList<Item>();
   private Weapon equippedWeapon;
   private int insight;                                      // insight increments when:
   private int darkSearchCount = 0;
+  private boolean blockFlag=false;
+  private boolean evadeFlag=false;
+  private boolean fleeFlag=false;
+  private boolean enemyBlockFlag=false;
+
+
   // a Slab is currently in the correct socket (+3)
   // Inscription over the door is read (permanent + 2)
   // Coded Scroll decrypted (permanent +1)
@@ -128,19 +134,141 @@ public class Player {
     return EquipCase.NOTEQUIPPED;
   }
 
-  public AttackCase attack(){
-    if(equippedWeapon!=null){
-      if(equippedWeapon.ammoLeft()==0){
+  public AttackCase attackAttempt(){
+    if(equippedWeapon!=null) {
+      if (equippedWeapon.ammoLeft() == 0) {
         return AttackCase.NoAmmo;
       }
-      int damageDealt = equippedWeapon.attack();
+      if (currentRoom.getRoomEnemies().size() != 0) {
+        return AttackCase.EnemyPresent;
+      }
+      equippedWeapon.attack();
       return equippedWeapon.weaponEffect();
     }
     return AttackCase.Empty;
   }
 
+  public CombatResult combat(CombatCase attackType){
+    if(evadeFlag && attackType==CombatCase.Flee){
+      return CombatResult.FleeSucces;
+    }
+    CombatResult result = combatDecider(attackType);
+    switch (result){
+      case Succes -> getCurrentRoom().getRoomEnemies().get(0).takeDamage(attack());
+      case BrutalSucces -> getCurrentRoom().getRoomEnemies().get(0).takeDamage(attack(),3);
+      case Loss -> takeDamage();
+      case BrutalLoss -> takeDamage(3);
+    }
+    blockFlag=false;
+    evadeFlag=false;
+    enemyBlockFlag=false;
+    if(result==CombatResult.BlockSucces){
+      blockFlag=true;
+    }
+    else if(result==CombatResult.EvadeSucces){
+      evadeFlag=true;
+    }
+    else if(result==CombatResult.EnemyBlockSucces){
+      enemyBlockFlag=true;
+    }
+    else if(result==CombatResult.FleeSucces){
+      fleeFlag=true;
+    }
+    return result;
+  }
+
+  public CombatResult combatDecider(CombatCase attackAction){
+  CombatCase enemyAction = currentRoom.getRoomEnemies().get(0).attack(enemyBlockFlag);
+    switch (attackAction) {
+      case Acute -> {
+        switch (enemyAction) {
+          case Acute,Counter -> {return CombatResult.Tie;}
+          case Cautious -> {return CombatResult.Loss;}
+          case Brutal -> {return CombatResult.Succes;}
+          case Block -> {return CombatResult.EnemyBlockSucces;}
+        }
+      }
+      case Brutal -> {
+        switch (enemyAction) {
+          case Acute -> {return CombatResult.Loss;}
+          case Brutal,Counter -> {return CombatResult.Tie;}
+          case Cautious, Block -> {return CombatResult.BrutalSucces;}
+        }
+      }
+      case Cautious -> {
+        switch (enemyAction) {
+          case Acute -> {return CombatResult.Succes;}
+          case Brutal -> {return CombatResult.BrutalLoss;}
+          case Cautious -> {return CombatResult.Tie;}
+          case Block -> {return CombatResult.EnemyBlockSucces;}
+          case Counter -> {return CombatResult.Loss;}
+        }
+      }
+      case Counter -> {
+        switch (enemyAction) {
+          case Acute, Brutal,Counter -> {return CombatResult.Tie;}
+          case Cautious,Block -> {return CombatResult.Succes;}
+        }
+      }
+      case Block -> {
+        switch (enemyAction){
+          case Acute,Cautious -> {return CombatResult.BlockSucces;}
+          case Brutal -> {return CombatResult.BrutalLoss;}
+          case Block -> {return CombatResult.Tie;}
+          case Counter -> {return CombatResult.Loss;}
+        }
+      }
+      case Evade -> {
+        switch (enemyAction){
+          case Acute -> {return CombatResult.Loss;}
+          case Cautious,Brutal,Counter -> {return CombatResult.EvadeSucces;}
+          case Block -> {return CombatResult.Tie;}
+        }
+      }
+      case Flee -> {
+        switch (enemyAction){
+          case Acute,Counter -> {return CombatResult.Loss;}
+          case Cautious,Brutal -> {return CombatResult.FleeSucces;}
+          case Block -> {return CombatResult.Tie;}}
+      }
+    }
+    return null;
+  }
+
+  public int attack(){
+    return equippedWeapon.attack();
+  }
+
+  public int getWeaponDamage(){
+    return equippedWeapon.getWeaponDMG();
+  }
+
+  public void takeDamage(){
+    health-=currentRoom.getRoomEnemies().get(0).enemyAttack();
+  }
+
+  public void takeDamage(int brutal){
+    health-=brutal + currentRoom.getRoomEnemies().get(0).enemyAttack();
+  }
+
   public int getHealth() {
     return health;
+  }
+
+  public boolean isBlockFlag() {
+    return blockFlag;
+  }
+
+  public boolean isEvadeFlag() {
+    return evadeFlag;
+  }
+
+  public boolean isFleeFlag() {
+    return fleeFlag;
+  }
+
+  public void setFleeFlag(boolean fleeFlag) {
+    this.fleeFlag = fleeFlag;
   }
 
   public Weapon getEquippedWeapon() {

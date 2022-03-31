@@ -17,10 +17,33 @@ package com.company;
     Critical
   }
 
+  enum CombatCase {
+    Acute,
+    Brutal,
+    Cautious,
+    Counter,
+    Block,
+    Evade,
+    Flee
+  }
+
+  enum CombatResult {
+    Tie,
+    Succes,
+    BrutalSucces,
+    Loss,
+    BrutalLoss,
+    EvadeSucces,
+    BlockSucces,
+    EnemyBlockSucces,
+    FleeSucces
+  }
+
   enum AttackCase {
-    MeleeSwing,
-    RangedWeapon,
-    ThrownWeapon,
+    EnemyPresent,
+    MeleeSwingMiss,
+    RangedWeaponMiss,
+    ThrownWeaponMiss,
     NoAmmo,
     Empty
   }

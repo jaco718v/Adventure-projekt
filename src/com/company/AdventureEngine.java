@@ -9,6 +9,8 @@ public class AdventureEngine {
   Player player = new Player(map.room0);
   Random izer = new Random();
 
+
+
   /*public void playMusic(){
     try
     {
@@ -174,11 +176,51 @@ public class AdventureEngine {
   }
 
   public AttackCase attack(){
-    return player.attack();
+    return player.attackAttempt();
+  }
+
+  public boolean ammoWarning(){
+    if(player.getEquippedWeapon().ammoLeft()==0){
+      return true;
+    }
+    return false;
+  }
+
+  public CombatCase combatRandomChoice1(){
+    Random random = new Random();
+    int number = (random.nextInt(17)+1);
+    switch (number){
+      case 1,2,3,4,5 ->{ return CombatCase.Acute;}
+      case 6,7,8 ->{return CombatCase.Brutal;}
+      case 9,10,11,12->{
+        if(player.isBlockFlag() || player.isEvadeFlag()){
+          return CombatCase.Counter;}
+        else
+        return CombatCase.Cautious;}
+      case 13,14,15 ->{return CombatCase.Evade;}
+      case 16,17 ->{return CombatCase.Block;}
+    }
+    return null;
+  }
+
+  public CombatResult combat(CombatCase combatCase){
+   return player.combat(combatCase);
+  }
+
+  public void fleeFlagReset(){
+    player.setFleeFlag(false);
+  }
+
+  public boolean enemyDeath() {
+    return (player.getCurrentRoom().getRoomEnemies().get(0).enemyDeath(player.getCurrentRoom()));
   }
 
   public EquipCase equipWeapon(String itemName){
     return player.equipWeapon(itemName);
+  }
+
+  public Enemy getRoomEnemy(){
+    return player.getCurrentRoom().getRoomEnemies().get(0);
   }
 
   public Weapon getEquippedWeapon(){

@@ -49,7 +49,7 @@ public class AdventureInterface {
     AdventureInterface obj = new AdventureInterface();
     AdventureEngine engine = new AdventureEngine();
     Scanner sc = new Scanner(System.in);
-    String space = " ";
+    String choice = null;
 
     obj.intro();
     //engine.playMusic();
@@ -57,11 +57,12 @@ public class AdventureInterface {
     engine.setRoomConnections();
     engine.setItems();
     System.out.println(engine.getNarrative());
-    while (!space.equalsIgnoreCase("quit")) {
-      space = sc.nextLine().toLowerCase();
-      String firstWord = engine.firstWordSplit(space);
-      String secondWord = engine.secondWordSplit(space);
+    while (choice==null || !choice.equalsIgnoreCase("quit")) {
+      choice = sc.nextLine().toLowerCase();
+      String firstWord = engine.firstWordSplit(choice);
+      String secondWord = engine.secondWordSplit(choice);
       boolean validDirectionFlag = true;
+      boolean enemyTurnFlag=false;
       switch (firstWord){
         case "help" -> {
           obj.help();
@@ -187,14 +188,96 @@ public class AdventureInterface {
           }
           else System.out.println("No weapon currently equipped");
         }
-        case "attack" ->{
+        case "attack" -> {
           AttackCase attackCase = engine.attack();
-          switch (attackCase){
-            case RangedWeapon -> System.out.println("You fire your weapon blindly, hitting nothing.");
-            case MeleeSwing -> System.out.println("You swing your weapon in the air producing a mildly satisfying sound.");
-            case ThrownWeapon -> System.out.println("Weapon thrown.");
+          switch (attackCase) {
+            case RangedWeaponMiss -> System.out.println("You fire your weapon blindly, hitting nothing.");
+            case MeleeSwingMiss -> System.out.println("You swing your weapon in the air.");
+            case ThrownWeaponMiss -> System.out.println("You throw your weapon at nothing.");
             case NoAmmo -> System.out.println("You attempt to fire your weapon, yet nothing happens. It would seem you've run out of ammo.");
-            case Empty -> System.out.println("Bare-handed, you swing your fists through the air.");
+            case Empty -> System.out.println("You are unarmed, i'd be best to avoid combat.");
+            case EnemyPresent -> {
+              System.out.println("You engage the enemy "+engine.getRoomEnemy().getName());
+              while(engine.player.getCurrentRoom().getRoomEnemies().size() >0 && !engine.player.isFleeFlag()){
+              CombatCase choice1 = engine.combatRandomChoice1();
+              CombatCase choice2 = choice1;
+              while (choice2 == choice1) {
+                choice2 = engine.combatRandomChoice1();
+              }
+              switch (choice1) {
+                case Acute -> System.out.println("1. Acute attack");
+                case Brutal -> System.out.println("1. Brutal attack");
+                case Cautious -> System.out.println("1. Cautious attack");
+                case Counter -> System.out.println("1. Counter");
+                case Evade -> System.out.println("1. Evade");
+                case Block -> System.out.println("1. Block");
+              }
+              switch (choice2) {
+                case Acute -> System.out.println("2. Acute attack");
+                case Brutal -> System.out.println("2. Brutal attack");
+                case Cautious -> System.out.println("2. Cautious attack");
+                case Counter -> System.out.println("2. Counter");
+                case Evade -> System.out.println("2. Evade");
+                case Block -> System.out.println("2. Block");
+              }
+              System.out.println("3. Flee");
+              boolean ammoWarningFlag = engine.ammoWarning();
+              if(engine.player.getEquippedWeapon().ammoLeft()>0)
+              System.out.println("Remaining ammo: "+engine.player.getEquippedWeapon().ammoLeft());
+              if(engine.ammoWarning()){
+                System.out.println("You're out of ammo. Fleeing is recommended.");
+              }
+
+              int attackChoice = 0;
+              while (attackChoice != 1 && attackChoice != 2 && attackChoice != 3) {
+                attackChoice = sc.nextInt();
+              }
+              CombatResult result;
+              if (attackChoice == 1) {
+                result = engine.combat(choice1);
+              } else if (attackChoice == 2) {
+                result = engine.combat(choice2);
+              } else {
+                result = engine.combat(CombatCase.Flee);
+              }
+              System.out.println("The enemy choice was "+engine.getRoomEnemy().getEnemyAction());
+              switch (result) {
+                case Succes -> {
+                  if(ammoWarningFlag){
+                  System.out.println("You've no ammo left to use ");
+                  } else
+                  System.out.println("You succeed in attacking, dealing " + engine.player.getWeaponDamage() + " damage to "
+                    + engine.getRoomEnemy().getName());
+                }
+                case BrutalSucces -> {
+                  if(ammoWarningFlag){
+                  System.out.println("You've no ammo left to use ");
+                } else
+                  System.out.println("You succeed in a brutal attacking, dealing " + engine.player.getWeaponDamage() + "+ 3 extra damage to "
+                    + engine.getRoomEnemy().getName());
+                }
+                case BlockSucces -> System.out.println("You successfully blocked the attack, enabling a possible counterattack");
+                case EvadeSucces -> System.out.println("You successfully evade the attack, enabling a possible counterattack or a guaranteed flee attempt;");
+                case Tie -> System.out.println("The outcome is a tie!");
+                case Loss -> System.out.println("The enemy succeeded in attacking, dealing "
+                    + engine.getRoomEnemy().enemyAttack() + " damage to you.");
+                case BrutalLoss -> System.out.println("The enemy succeeded in executing a brutal attack, dealing "
+                    + engine.getRoomEnemy().enemyAttack() + " + 3 extra damage to you.");
+                case EnemyBlockSucces -> System.out.println("The enemy succeeds in blocking your attack.");
+                case FleeSucces -> System.out.println("You flee the battle");
+              }
+                System.out.println("Gabriels current health: "+engine.player.getHealth()+"/30");
+                System.out.println(engine.getRoomEnemy().getName()+ "'s current health: "+engine.getRoomEnemy().getHealth());
+
+              engine.fleeFlagReset();
+              if(engine.enemyDeath()){
+                System.out.println("You've defeated the enemy");
+              }
+              if(engine.player.isFleeFlag()) {
+                System.out.println("You flee the battle");
+              }
+              }
+            }
           }
         }
         case "equip" ->{
@@ -225,6 +308,9 @@ public class AdventureInterface {
         //System.out.println("The stone door remains closed...");
         //} else
         System.out.println("Can't go that way");}
+      if(enemyTurnFlag){
+
+      }
     }
     }
   }

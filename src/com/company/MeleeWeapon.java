@@ -2,12 +2,12 @@ package com.company;
 
 public class MeleeWeapon extends Weapon {
 
-  public MeleeWeapon(String shortID, int combatDMG, boolean occupant, boolean illegal, String effect, String itemName, String itemDescription){
-    super(shortID, combatDMG, occupant, illegal, effect, itemName, itemDescription);
+  public MeleeWeapon(String shortID, int weaponDMG, boolean occupant, boolean illegal, String effect, String itemName, String itemDescription){
+    super(shortID, weaponDMG, occupant, illegal, effect, itemName, itemDescription);
   }
 
   public int attack() {
-    return combatDMG;
+    return weaponDMG;
   }
 
   public int ammoLeft() {
@@ -15,6 +15,6 @@ public class MeleeWeapon extends Weapon {
   }
 
   public AttackCase weaponEffect(){
-    return AttackCase.MeleeSwing;
+    return AttackCase.MeleeSwingMiss;
   }
 }

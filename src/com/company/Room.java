@@ -14,6 +14,7 @@ public class Room {
   private ArrayList<PseudoItems> roomPseudos = new ArrayList<PseudoItems>();
   private ArrayList<Item> roomItems = new ArrayList<Item>();
   private boolean explored;
+  private ArrayList<Enemy>  roomEnemies= new ArrayList<Enemy>();
 
   public Room(String name, String beskrivelse,String search, String recap){
     this.name=name;
@@ -89,6 +90,11 @@ public class Room {
   public void addRoomItem(Item roomItem){
     this.roomItems.add(roomItem);
   }
+
+  public void addRoomEnemy(Enemy roomEnemy){
+    this.roomEnemies.add(roomEnemy);
+  }
+
   public void addRoomItem(PseudoItems roomItem){ this.roomPseudos.add(roomItem); }
 
   public ArrayList<Item> getRoomItems() {
@@ -96,6 +102,10 @@ public class Room {
   }
   public ArrayList<PseudoItems> getRoomPseudos() {
     return roomPseudos;
+  }
+
+  public ArrayList<Enemy> getRoomEnemies() {
+    return roomEnemies;
   }
 
   public String getSearch() {
