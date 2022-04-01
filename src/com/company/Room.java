@@ -15,21 +15,23 @@ public class Room {
   private ArrayList<Item> roomItems = new ArrayList<Item>();
   private boolean explored;
   private ArrayList<Enemy>  roomEnemies= new ArrayList<Enemy>();
+  private String filePath;
 
-  public Room(String name, String beskrivelse,String search, String recap){
+  public Room(String name, String beskrivelse,String search, String recap, String filePath){
     this.name=name;
     this.description =beskrivelse;
     this.search=search;
     this.recap=recap;
+    this.filePath=filePath;
   }
-
+ /*
   public Room(String name, Room north, Room east, Room south, Room west) {    // This one is mainly for the baby, right now
     this.name=name;
     this.north=north;
     this.east=east;
     this.south=south;
     this.west=west;
-  }
+  }*/
 
   public Item findRoomItem(String itemName){
     for(int i = 0;i<getRoomItems().size(); i++) {
@@ -58,6 +60,10 @@ public class Room {
 
   public String getDescription() {
     return description;
+  }
+
+  public String getFilePath() {
+    return filePath;
   }
 
   public void setEast(Room east) {

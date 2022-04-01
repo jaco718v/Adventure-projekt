@@ -1,18 +1,20 @@
 package com.company;
 
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class AdventureEngine {
-  MapCreator map = new MapCreator();
-  Player player = new Player(map.room0);
-  Random izer = new Random();
+  public class AdventureEngine {
+    MapCreator map = new MapCreator();
+    Player player = new Player(map.room0);
+    Random izer = new Random();
 
-
-
-  /*public void playMusic(){
-    try
+  public void playMusic(){
+  try
     {
       String musicLocation = "src/Dark Art.wav";
       File musicPath = new File(musicLocation);
@@ -43,7 +45,6 @@ public class AdventureEngine {
       ex.printStackTrace();
     }
   }
-*/
 
   public void setRoomConnections() {
     map.setRoomConnections();
@@ -60,6 +61,28 @@ public class AdventureEngine {
       (player.getCurrentRoom()).setExplored(true);
       return (player.getCurrentRoom()).getDescription();
     }
+  }
+
+  public ContainerCase openItem(String item){
+    Item itemFound = player.findInventoryItem(item);
+    ArrayList<Item> containerLocation = player.getInventory();
+    if(itemFound == null) {
+      itemFound = player.getCurrentRoom().findRoomItem(item);
+      containerLocation = player.getCurrentRoom().getRoomItems();
+      if (itemFound == null) {
+        return ContainerCase.NOTFOUND;
+      } else
+      if (itemFound instanceof Container) {
+        Container box = (Container) itemFound;
+        if (!box.getLocked()) {
+          player.openItem(box.getContent(), itemFound.getItemName());
+          return ContainerCase.OPENED;
+        } else {
+          return ContainerCase.LOCKED;
+        }
+      }
+    }
+    return ContainerCase.NOTCONTAINER;
   }
 
   public EatCase eatItem(String item){
@@ -115,12 +138,10 @@ public class AdventureEngine {
     return player.dropItem(item);
   }
 
-//  public boolean openItem(String item) { return player.openItem(item); }
-
-  public String darkSearch(int count) {
+  public String darkSearch() {
     player.setDarkSearchCount();
     int darkNumber = izer.nextInt(4)+player.getDarkSearchCount();
-    String themeIteration = " ";
+    String themeIteration;
     switch (darkNumber) {
       case 0:
       case 1:
@@ -134,7 +155,7 @@ public class AdventureEngine {
         break;
       case 4:
       case 5:
-        themeIteration = "\u001B[40m\u001B[37Gabriel can't even see his hand before him, in this pitch black room! He feels it, though, when he loses balance, and cut the side of his hand, bracing on a sharp edge...\u001B[33m";
+        themeIteration = "\u001B[40m\u001B[37mGabriel can't even see his hand before him, in this pitch black room! He feels it, though, when he loses balance, and cut the side of his hand, bracing on a sharp edge...\u001B[33m";
         break;
       case 6:
       case 7:
@@ -152,7 +173,6 @@ public class AdventureEngine {
     }
     return themeIteration;
   }
-
 
   public String firstWordSplit(String word) {
     if (word.contains("go ")){
@@ -226,7 +246,9 @@ public class AdventureEngine {
   public Weapon getEquippedWeapon(){
     return player.getEquippedWeapon();
   }
-}
+
+  public String getFilePath() {return player.getCurrentRoom().getFilePath(); }
+  }
 
 
 

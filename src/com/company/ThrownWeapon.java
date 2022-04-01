@@ -1,16 +1,21 @@
-/*package com.company;
+package com.company;
 
-public class ThrownWeapon extends Weapon {
-    public ThrownWeapon(String shortID, int combatDMG, boolean occupant, boolean illegal, String effect, String name, String itemDescription) {
-        super(shortID, combatDMG, occupant, illegal, effect, name, itemDescription);
+import java.util.ArrayList;
+
+public class ThrownWeapon extends Item {
+    int weaponDMG;
+
+    public ThrownWeapon(String shortID, int weaponDMG, boolean occupant, boolean illegal, String effect, String name, String itemDescription) {
+        super(shortID, occupant, illegal, effect, name, itemDescription);
+        this.weaponDMG=weaponDMG;
     }
 
-    public int throw(String secondWord) {
-        Item thrown = engine.player.findInventoryItem(secondWord);
-        engine.player.getInventory().remove(thrown);
-        return combatDMG;
+    public int yeet(ArrayList<Item> inventory, ThrownWeapon weaponisedItem) {
+        Item yeeted = weaponisedItem;
+        inventory.remove(yeeted);
+        return weaponDMG;
     }
     public AttackCase weaponEffect(){
-        return AttackCase.ThrownWeapon;
+        return AttackCase.ThrownWeaponMiss;
     }
-}*/
+}

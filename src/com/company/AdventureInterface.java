@@ -1,6 +1,9 @@
 package com.company;
 
+import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 //import javax.swing.*;
 
@@ -14,35 +17,139 @@ public class AdventureInterface {
             "look\t\t\t\topen [Item]\t\texamine [Item]\n" +
             "\t\t\t\t\t\t\t\t\t\t\t\t\t\tquit");
     System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t...and more!");
-    //hidden commands:  throw   swing (on)  struggle  wrestle
+    //hidden commands:  throw   swing (on)    struggle/wrestle    break/smash
+    //not implemented
   }
-
-  public void intro() {
-    System.out.println("Gabriel Knight is a struggling writer... that is, he's struggling to write anything at all. While researching a mysterious string of local murders, in the tabloids, eeriely  named,\n" +
-            "\"The Voodoo Murders\", his idea, for a new bestseller, Gabriel has gotten in contact with his estranged uncle Wolfgang from Germany, who tells him of their family's\n" +
-            "secret history, and their experience with the occult!\n");
-    System.out.println("However, by the time Gabriel arrives at the dilapidated Schloss Ritter, in southern Bavaria, he finds that Wolfgang has seemingly lost his patience, and already left on his own...\n" +
-            "Alone and confused, he prays to their patron saint St. George fo guidance, even though you could hardly call him religious. In his dreams that night, he sees a key, and to his surprise,\n" +
-            "he notices the key in Wolfgang's office, the following day. He immediately realizes, it's the key for the library.\n");
-    System.out.println("Upon gaining entry, Gabriel methodically parses through the sections relating to voodoo cults and their history. After studying all morning, he reaches the same conclusion,\n" +
-            "Wolfgang must have; All accounts suggest the ancestral home of the Agris tribe, is an area know as the Red Basin, in, what is now known as the People's Republic of Benin.\n" +
-            "And there's a high likelihood, that that's where Tetelo's remains ended up being buried... and thus, it is likely, that the Schattenjäger Talisman may be there, as well.\n" +
-            "Good thing, Gabriel still has Moesby's \"American's Repressed\" card... He should be able to make a flight there, before the night falls.\n");
-    System.out.println("Now, posing as an anthropologist, the late Professor Hartridge, possibly another victim of the murderous cultists, Gabriel hopes he can locate and gain access to their burial mound.");
-    System.out.println("What did Gabriel take with him? (Choose 3 items)");
+  public void showVisual() {
+    ImageIcon ii = new ImageIcon("src/room13.gif");
+    JLabel title = new JLabel();
+    JLabel label = new JLabel();
+    label.setIcon(ii);
+    //Icon icon = new ImageIcon(url);
+    JPanel contentPane = new JPanel();
+    title.setFont(new java.awt.Font("Times New Roman", Font.BOLD, 16));
+    title.setText("       .Tomb Of Tetelo\n - A Gabriel Knight adventure");
+    contentPane.add(title, java.awt.BorderLayout.SOUTH);
+    contentPane.add(label, java.awt.BorderLayout.CENTER);
+    JFrame f = new JFrame(".Tomb of Tetelo");
+    f.getContentPane().add(label);
+    f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    f.pack();
+    f.setLocationRelativeTo(null);
+    f.setVisible(true);
+    //icon.paintIcon(null, label.getGraphics(),500,500);
+  }
+  public ArrayList<Item> intro() {
     System.out.println();
-    System.out.println("\t\u001B[30mRope\t\t\u001B[31mGabriel's Research Notes\t\t\u001B[32mTequila Travel Box Set\t\t\u001B[33mSausages\t\t");
-    System.out.println("\t\u001B[34mCompass\t\t\u001B[35mHammer\t\t\u001B[36mRada Drum Code\t\t\u001B[37mCultist Bracelet\t\t");
-    System.out.println("\t\u001B[38mKeychain\t\t\u001B[39mArea Map\t\t\u001B[40mLocal Currency\t\t\u001B[41mWallet");
-    System.out.println("\t\u001B[42mTracking Device\t\t\u001B[43mBody Paint\t\t\u001B[44mOther\t\t");
-  }
+    System.out.println();
+    System.out.println("Gabriel Knight is a struggling writer... that is, he's struggling to write anything at all. While researching a mysterious string of local murders, in the\n" +
+            "tabloids, eeriely named, \"The Voodoo Murders\", (Yes, that IS his idea, for a new bestseller), he has gotten in contact with his estranged uncle Wolfgang from\n" +
+            "Germany, who tells Gabriel of their secret family history, and their centuries past experience with the occult!\n");
+    System.out.println("However, by the time Gabriel arrives at the dilapidated Schloss Ritter, in southern Bavaria, it would appear, that Wolfgang has seemingly already\n" +
+            "lost his patience, and left on his own... The woman who works there, Gerde, seems to be genuinely worried for him.\n" +
+            "Alone and confused, he prays for guidance, in a small chapel, Wolfgang built to their family patron saint, St. George. Even though he's hardly religious.\n" +
+            "But in his dreams that night, Gabriel sees a key, and, to his befuddlement, he notices that very same key in Wolfgang's office, the following day.\n" +
+            "He immediately realizes, it's the key for the library!\n");
+    System.out.println("Upon gaining entry, Gabriel methodically parses through the sections relating to voodoo cults and their history. After studying all morning, he reaches the\n" +
+            "same conclusion, Wolfgang must have; All accounts suggest the ancestral home of the Agris tribe, is an area know as the Red Basin, in, what is now known\n" +
+            "as the People's Republic of Benin. And there's a high likelihood, that's where Tetelo's remains ended up being buried... and so, it is also likely, that\n" +
+            "the Schattenjäger Talisman is there, as well. Good thing, Gabriel still has Moesby's \"American's Repressed\" card...\n" +
+            "He should be able to make a flight there, before the night falls.\n");
+    System.out.println("Now, posing as an anthropologist, the late Professor Hartridge, who was even possibly another victim of the murderous cultists, Gabriel hopes he can locate\n" +
+            "and inconspicuously gain access to their ancestral holy ground. \"Just a quick, little look-see...\"");
+    System.out.println("What did Gabriel take with him? (Choose 3 items, e.g. ABC)");
+    System.out.println();
+    System.out.println("\t\u001B[34m (A) Compass\t\t\t (B) Gabriel's Research\t\t (C) Local Currency\t\t (D) Hammer\t\t");
+    System.out.println("\t (E) Rada Drum Code\t\t (F) Sausages\t\t\t\t (G) Rope\t\t\t\t (H) Cultist Bracelet\t\t");
+    System.out.println("\t (I) Tequila Travel Box\t (J) Local Area Map\t\t\t (K) Tracking Device\t (L) Moesby's Wallet & Badge\u001B[0m");
 
+    Container boxset = new Container("TeqBox", true, false, false, "use content on Rusty Grate", "Tequila Travel Box", "Hah, is it five o' clock, already? Even now, Gabriel is only thinking about partying!");
+    Item rope = new Item("Rope", false,false,"use in room 19, and/or 9","Nylon Rope", "Gabriel brought this with him from Schloss Ritter!? Seems to me, he must be an experienced adventurer!");
+    Container notes = new Container("Notebook", false,false, false,"decrypt scroll, create picture item when 'examine notes'","Gabriel's Notebook","These are Gabriel's research notes, a diary of sorts, of his investigation into the Voodoo Murders case. It also contains\na bit of Gunther's account of the Gedde's original tribe, and Moonbeam's voodoo ciphers. It's gonna make the book a bestseller!");
+//Semi-useful
+    Food wurst = new Food("Sausages", false,false,"+2 Health","Cold \"Weisswurst\"", "Gabriel bought these in Munich. They have, naturally, long gone cold. Gabriel isn't sure, if he should eat them, now...",2,0);
+    Item NSEW = new Item("Compass", false,false,"currently none", "Field Compass", "Hah! Gabriel stole this, while he was in the military. Well, at least, he KEPT it, all these years. It points in the direction of the magnetic north.");
+    MeleeWeapon hammer = new MeleeWeapon("Hammer", 2,false,false,"none","Toolkit Hammer", "It's a regular hammer, with a stocky head, and a long peen. Heh, now that definitely doesn't belong to Gabriel.");
+//Useless
+    Item book = new Item("Book", true, false, "none","Rada Drum Code", "The Gedde henchmen used these code patterns to communicate encrypted messages across the french quarter, while passing for simple buskers. But why did Gabriel bring this with him to Africa?");
+    Item regMap = new Item("Map", false,false,"none","Red Basin Topographical Map", "Gabriel brought a map of the local area... But the driver already knew the site of the burial mound! Not much use, now...");
+    Item cefa = new Item("Money", false,false,"none","CFA Francs (7.000 f)", "This is the currency of Benin... Gabriel exchanged all of his cash at the airport.");
+    Item wallet = new Item("Wallet", false,false,"none","Moesby's Wallet & Badge", "Gabriel enjoyed his flight to Africa, almost as much, as he enjoyed his flight to Munich... Thank you, \"American's Repressed\". I wonder how Moesby will react, when he finds out?");
+    Item tracker = new Item("Tracker", false,false,"none","Tracking Device (with signal device)", "This is the toy, that Gabriel snuck out, from the poli... correction... that he ALSO stole, from the police office! He really should've \"snuck\" that back in.");
+    Item bangle = new Item("Bracelet", false,false,"none","Cult Snake Bracelet", "Gabriel had Marcus cast this, in order to pass himself off as a member of the voodoo cult... to his credit, it really does look like a thing of evil. Who is planning to fool, this time?");
 
+    Scanner keybdINput = new Scanner(System.in);
+    String choice = keybdINput.nextLine() + " ";
+    String letter = " ";
+    Item itemBehindLetter;
+    ArrayList<Item> startingInventory = new ArrayList<>();
 
-  public void setInitialInventory(Item first, Item second, Item third) {
-    ArrayList<Item> broughtGear = new ArrayList<>();
-    broughtGear.add(first); broughtGear.add(second); broughtGear.add(third);
-    //engine.player.setInventory(broughtGear);
+    for (int i = 0; i <=2; i++) {
+      if (i > 2) {
+        letter = choice.substring(2);
+      } else {
+        letter = choice.substring(i, i + 1);
+      }
+      switch (letter) {
+        case "A":
+          itemBehindLetter = NSEW;
+          startingInventory.add(itemBehindLetter);
+          break;
+        case "B":
+          itemBehindLetter = notes;
+          startingInventory.add(itemBehindLetter);
+          break;
+        case "C":
+          itemBehindLetter = cefa;
+          startingInventory.add(itemBehindLetter);
+          break;
+        case "D":
+          itemBehindLetter = hammer;
+          startingInventory.add(itemBehindLetter);
+          break;
+        case "E":
+          itemBehindLetter = book;
+          startingInventory.add(itemBehindLetter);
+          break;
+        case "F":
+          itemBehindLetter = wurst;
+          startingInventory.add(itemBehindLetter);
+          break;
+        case "G":
+          itemBehindLetter = rope;
+          startingInventory.add(itemBehindLetter);
+          break;
+        case "H":
+          itemBehindLetter = bangle;
+          startingInventory.add(itemBehindLetter);
+          break;
+        case "I":
+          Random izer = new Random();
+          RangedWeapon bottle = new RangedWeapon("Tequila", 2, izer.nextInt(6) + 3, false, false, "none", "Bottle of Tequila", "Party time! I'd thought, that Gabriel would prefer more of a... \"guido\" kind of cocktail.");
+          Item juice = new Item("Lemon", false, false, "none", "Lemon Juice Dispenser", "This came in the Tequila Box Set... What is the order now, again? Salt first, then lemon, then... no...");
+          Item salt = new Item("Salt", false, false, "none", "Salt Shaker", "This small salt shaker was also included in the Tequila Box Set. It is, what you'd expect. Table salt in a cheap plastic dispenser.");
+          itemBehindLetter = (Container) boxset;
+          boxset.addContainedItem(bottle);
+          boxset.addContainedItem(juice);
+          boxset.addContainedItem(salt);
+          startingInventory.add(itemBehindLetter);
+          break;
+        case "J":
+          itemBehindLetter = regMap;
+          startingInventory.add(itemBehindLetter);
+          break;
+        case "K":
+          itemBehindLetter = tracker;
+          startingInventory.add(itemBehindLetter);
+          break;
+        default:
+          itemBehindLetter = wallet;
+          startingInventory.add(itemBehindLetter);
+          break;
+
+      }
+    }
+    return startingInventory;
   }
 
   public static void main(String[] args) {
@@ -51,12 +158,13 @@ public class AdventureInterface {
     Scanner sc = new Scanner(System.in);
     String choice = null;
 
-    obj.intro();
-    //engine.playMusic();
-//    ArrayList<Item> startingInventory = engine.player.setInventory(ArrayList<Item> newInventory);
+    engine.player.setInventory(obj.intro());
+    obj.showVisual();
+    engine.playMusic();
     engine.setRoomConnections();
     engine.setItems();
     System.out.println(engine.getNarrative());
+
     while (choice==null || !choice.equalsIgnoreCase("quit")) {
       choice = sc.nextLine().toLowerCase();
       String firstWord = engine.firstWordSplit(choice);
@@ -67,11 +175,10 @@ public class AdventureInterface {
         case "help" -> {
           obj.help();
         }
-        /*
         case "open" -> {
-          containerStatus isOpened = engine.openItem(secondWord);
+          ContainerCase isOpened = engine.openItem(secondWord);
           switch (isOpened){
-            case UNLOCKED -> {
+            case OPENED -> {
               System.out.println("You open the "+secondWord);
             }
             case LOCKED ->  {
@@ -84,7 +191,7 @@ public class AdventureInterface {
               System.out.println("There is no "+secondWord+" present in the inventory, nor in this room");
             }
           }
-        }*/
+        }
         case "look" -> {
           System.out.println(engine.getLook());
         }
@@ -100,6 +207,9 @@ public class AdventureInterface {
                 System.out.printf("\u001B[30m" + item.getItemName() + "\t\t\u001B[33m");
               }
             }
+          } else {
+            System.out.println(engine.darkSearch());
+            engine.player.fallDamage(1);
           }
         }
         case "eat" ->{
@@ -301,7 +411,12 @@ public class AdventureInterface {
           }
         }
         case "quit" ->{
-          System.out.println("exiting game...");}
+          System.out.println("exiting game...");
+        }
+        case "solve" ->{
+          engine.map.setNewConnections();
+          engine.map.unleashZombies();
+        }
       }
       if (!validDirectionFlag){
         //if (Player.getCurrentRoom().getNorth().equals(room8)
@@ -309,8 +424,7 @@ public class AdventureInterface {
         //} else
         System.out.println("Can't go that way");}
       if(enemyTurnFlag){
-
       }
     }
-    }
   }
+}

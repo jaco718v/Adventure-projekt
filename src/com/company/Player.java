@@ -7,18 +7,12 @@ public class Player {
   private int health = 30;
   private ArrayList<Item> inventory = new ArrayList<Item>();
   private Weapon equippedWeapon;
-  private int insight;                                      // insight increments when:
-  private int darkSearchCount = 0;
-  private boolean blockFlag=false;
-  private boolean evadeFlag=false;
-  private boolean fleeFlag=false;
+  private int insight;                            // insight increments when:
+  private int darkSearchCount = 0;                // a Slab is currently in the correct socket (+3)
+  private boolean blockFlag=false;                // Inscription over the door is read (permanent + 2)
+  private boolean evadeFlag=false;                // Coded Scroll decrypted (permanent +1)
+  private boolean fleeFlag=false;                 // room1 is searched (permanent +1)
   private boolean enemyBlockFlag=false;
-
-
-  // a Slab is currently in the correct socket (+3)
-  // Inscription over the door is read (permanent + 2)
-  // Coded Scroll decrypted (permanent +1)
-  // room1 is searched (permanent +1)
 
   public Player(Room currentRoom) {
     this.currentRoom = currentRoom;
@@ -94,22 +88,26 @@ public class Player {
   public ArrayList<Item> getInventory() {
     return inventory;
   }
-/*
-  public boolean openItem(String itemName) {
+
+  public boolean openItem(ArrayList<Item> containerLocation, String itemName) {
     Item itemFound = findInventoryItem(itemName);
-    if (itemFound != null) {
-      ArrayList<Item> contents = new ArrayList<Item>();
-      for (Item item : (Container) itemFound.getContent()) {
-        inventory.add(item);
-        (Container) itemFound.getContent().remove(item);
+    if (itemFound == null) {
+      containerLocation = getCurrentRoom().getRoomItems();
+      itemFound = getCurrentRoom().findRoomItem(itemName);
+      if (itemFound != null) {
+        Container box = (Container) itemFound;
+        for (Item item : box.getContent()) {
+          inventory.add(item);
+          box.getContent().remove(item);
+        }
+//      Item removed = findInventoryItem(itemName);
+      if (box.isEnvelope()) { inventory.remove(box); }
+        return true;
       }
-      Item removed = findInventoryItem(container.getItemName());
-      inventory.remove(removed);
-      return true;
     }
     return false;
   }
-*/
+
   public void eatFood(ArrayList<Item> foodLocation,Food food) {
     int foodEffect = food.eatFood(foodLocation,food);
     health += foodEffect;
@@ -247,7 +245,6 @@ public class Player {
     return equippedWeapon.getWeaponDMG();
   }
 
-
   public void takeDamage(){
     health-=currentRoom.getRoomEnemies().get(0).enemyAttack();
   }
@@ -255,6 +252,8 @@ public class Player {
   public void takeDamage(int brutal){
     health-=brutal + currentRoom.getRoomEnemies().get(0).enemyAttack();
   }
+
+  public void fallDamage(int damageRecived) { health -= damageRecived; }
 
   public int getHealth() {
     return health;
