@@ -435,8 +435,7 @@ public class AdventureInterface {
         //System.out.println("The stone door remains closed...");
         //} else
         System.out.println("Can't go that way");}
-      if(enemyTurnFlag){
       }
     }
-  }
 }
+

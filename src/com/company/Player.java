@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Player {
   private Room currentRoom;
-  private int health = 35;
+  private int health = 30;
   private ArrayList<Item> inventory = new ArrayList<Item>();
   private Weapon equippedWeapon;
   private int insight;                            // insight increments when:
@@ -29,7 +29,7 @@ public class Player {
   public void setDarkSearchCount() {this.darkSearchCount += 1;}
 
   public HpCase hpStatus(){
-      if( health>30){
+      if( health==30){
         return HpCase.Unhurt;}
       else if (health>26){
         return HpCase.Bruised;}
