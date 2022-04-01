@@ -15,11 +15,18 @@ public class AdventureInterface {
     System.out.println("(go) + [Direction]\ttake [Item]\t\teat [Item]\t\t\tequip [Item]\n" +
             "search\t\t\t\tdrop [Item]\t\tuse [Item]\t\t\tinventory\n" +
             "look\t\t\t\topen [Item]\t\texamine [Item]\n" +
-            "\t\t\t\t\t\t\t\t\t\t\t\t\t\tquit");
+            "[combat] - help\t\t\t\t\t\t\t\t\t\t\tquit");
     System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t...and more!");
     //hidden commands:  throw   swing (on)    struggle/wrestle    break/smash
     //not implemented
   }
+  public void combatHelp(){
+    System.out.println("The combat works like Roshambo with:\nAcute>Brutal \tBrutal>Cautious \tCautious>Acute\n"
+    +"You also have the defensive options Block and Evade:\nBrutal>Block \tEvade>Acute   Brutal deals 3 extra damage\n"
+    +"Succeeding in a defensive move deals no damage, but upgrade cautious to counter the following turn.\n"
+        +"Using counter carries no risk, but only beats cautious.");
+  }
+
   public void showVisual() {
     ImageIcon ii = new ImageIcon("src/room13.gif");
     JLabel title = new JLabel();
@@ -168,6 +175,9 @@ public class AdventureInterface {
       switch (firstWord){
         case "help" -> {
           obj.help();
+        }
+        case "combat" ->{
+          obj.combatHelp();
         }
         case "open" -> {
           ContainerCase isOpened = engine.openItem(secondWord);
