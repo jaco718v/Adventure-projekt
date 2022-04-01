@@ -131,10 +131,12 @@ public class MapCreator {
 
     public void unleashZombies() {
         MeleeWeapon claw = new MeleeWeapon("claw",3,false,false,"enemyWeapon","zombClaw","none");
-        Enemy zombie = new Enemy(20,"Zombie",claw);
-        room12.addRoomEnemy(zombie);
-        room14.addRoomEnemy(zombie);
-        room19.addRoomEnemy(zombie);
+        Enemy zombie1 = new Enemy(20,"Zombie",claw);
+        Enemy zombie2 = new Enemy(20,"Zombie",claw);
+        Enemy zombie3 = new Enemy(20,"Zombie",claw);
+        room12.addRoomEnemy(zombie1);
+        room14.addRoomEnemy(zombie2);
+        room19.addRoomEnemy(zombie3);
     }
 
     public void setNewConnections() {
