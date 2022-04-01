@@ -159,7 +159,7 @@ public class AdventureInterface {
     engine.setItems();
     System.out.println(engine.getNarrative());
 
-    while (choice==null || !choice.equalsIgnoreCase("quit")) {
+    while (choice==null || !choice.equalsIgnoreCase("quit") ||!engine.player.playerDeath()) {
       choice = sc.nextLine().toLowerCase();
       String firstWord = engine.firstWordSplit(choice);
       String secondWord = engine.secondWordSplit(choice);
@@ -307,7 +307,8 @@ public class AdventureInterface {
             case Empty -> System.out.println("You are unarmed, i'd be best to avoid combat.");
             case EnemyPresent -> {
               System.out.println("You engage the enemy "+engine.getRoomEnemy().getName());
-              while(engine.player.getCurrentRoom().getRoomEnemies().size() >0 && !engine.player.isFleeFlag()){
+
+              while(!engine.player.playerDeath() || engine.player.getCurrentRoom().getRoomEnemies().size() >0 && !engine.player.isFleeFlag()){
               CombatOption choice1 = engine.combatRandomChoice1();
               CombatOption choice2 = choice1;
               while (choice2 == choice1) {
@@ -381,6 +382,8 @@ public class AdventureInterface {
               if(engine.enemyDeath()){
                 System.out.println("You've defeated the enemy");
               }
+              if(engine.player.playerDeath()){
+                System.out.println("You died :(");}
               if(engine.player.isFleeFlag()) {
                 System.out.println("You flee the battle");
               }

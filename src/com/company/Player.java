@@ -18,6 +18,13 @@ public class Player {
     this.currentRoom = currentRoom;
   }
 
+  public boolean playerDeath(){
+    if(health<1){
+      return true;
+    }
+    return false;
+  }
+
   public int getDarkSearchCount() { return darkSearchCount; }
   public void setDarkSearchCount() {this.darkSearchCount += 1;}
 
