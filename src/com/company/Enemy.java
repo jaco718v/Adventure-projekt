@@ -40,6 +40,9 @@ public class Enemy {
   public void takeDamage(int damage,int Brutal){
     if(!(damage==0))
     health-=Brutal + damage;
+    if(health<0){
+      health=0;
+    }
   }
 
   public boolean enemyDeath(Room currentRoom){

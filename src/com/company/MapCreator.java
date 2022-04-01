@@ -153,43 +153,57 @@ public class MapCreator {
     Item jewel3 = new Item("Belt",false,false,"valuable: 2.250 $, found behind Grate","Snakescale Belt","A belt in a shimmering snakescale-like design, with an elaborate emerald buckle. Undoubtedly quite valuable.");
     Item jewel4 = new Item("Coin", false,false,"valuable: 175-240 $, found from random Event (multiples possible).", "Ancient Tribal Coin","This gold coin is obviously ancient... And probably rare. Undoubtedly quite valuable.");
 
+    //For display
+    MeleeWeapon stick = new MeleeWeapon("Stick",3,true,true,null,"Heavy Stick","A conveniently placed stick ");
+    MeleeWeapon iSpear = new MeleeWeapon("Spear",5,true,true,null,"Iron Spear ","A spear of passable condition");
+    MeleeWeapon rSword = new MeleeWeapon("Sword",4,true,true,null,"Rusted Sword","A rusted sword of unknown origin");
+    MeleeWeapon heavyh = new MeleeWeapon("Hammer",6,true,true,null,"Heavy warhammer","Heavy and powerfull");
+    RangedWeapon bow1 = new RangedWeapon("Bow",5,4,true,true,null,"Light Bow", "Just a bow");
+    RangedWeapon gun1 = new RangedWeapon("Gun",7,6,true,true,null,"Revolver","A very efficient weapon, but limited usage");
+    Enemy zombie1 = new Enemy(6,"Rotting Zombie",rSword);
+    Enemy zombie2 = new Enemy(10,"Frenzied Zombie",iSpear);
+    Enemy zombie3 = new Enemy(20,"Ancient Zombie",heavyh);
+    Food potion = new Food("potion",true,true,null,"Rejuvenating potion","A sweet smelling liquid in an amber bottle",15,0);
+
 
   public void setRoomConnections() {
-    room0.setWest(room26);
-    room0.setNorth(room26);
+    //room0.setWest(room26);
+    //room0.setNorth(room26);
     room0.setEast(room1);
-    room0.setSouth(room1);
+    //room0.setSouth(room1);
 
-    room1.setWest(room26);
-    room1.setNorth(room26);
+    //room1.setWest(room26);
+    //room1.setNorth(room26);
     room1.setEast(room2);
-    room1.setSouth(room21);
+    room1.setSouth(room4);
 
     room2.setEast(room3);
-    room2.setSouth(room13);
+    //room2.setSouth(room13);
     room2.setWest(room1);
 
     room3.setWest(room2);
-    room3.setEast(room4);
+    room3.setSouth(room6);
 
-    room4.setWest(room3);
-    room4.setSouth(room5);
+    //room4.setWest(room3);
+    room4.setNorth(room1);
+    room4.setSouth(room7);
 
-    room5.setNorth(room4);
-    room5.setWest(room19);
-    room5.setSouth(room6);
+    //room5.setNorth(room4);
+    //room5.setWest(room19);
+    room5.setSouth(room8);
 
-    room6.setNorth(room5);
+    room6.setNorth(room3);
+    room6.setSouth(room9);
 
-    room7.setNorth(room17);
-    room7.setWest(room8);
+    room7.setNorth(room4);
+    room7.setEast(room8);
 
-    room8.setWest(room9);
-    room8.setEast(room7);
+    room8.setNorth(room5);
+    room8.setEast(room9);
+    room8.setWest(room7);
 
-    room9.setNorth(room10);
-    room9.setEast(room8);
-    //room9.setDOWN(room23);
+    room9.setNorth(room6);
+    room9.setWest(room8);
 
     room10.setNorth(room20);
     room10.setEast(room11);
@@ -231,6 +245,19 @@ public class MapCreator {
     //room23.setUP(room9);
   }
   public void setItems() {
+
+        //For display and testing
+        room0.addRoomItem(stick);
+        room4.addRoomItem(bow1);
+        room8.addRoomItem(gun1);
+
+        room7.addRoomItem(potion);
+
+        room1.addRoomEnemy(zombie1);
+        room7.addRoomEnemy(zombie2);
+        room5.addRoomEnemy(zombie3);
+        // Till here
+
         room0.addRoomItem(baobShell);
         room0.addRoomItem(bonez);
 
@@ -262,10 +289,10 @@ public class MapCreator {
         //room15.addRoomItem(sjKnife);        // Received from room18 eventEntity "Uncle Wolfgang"
         //room15.addRoomItem(sjMedallion);    // Received from room15 eventEntity "...and open sesame!"
 
-        room1.addRoomItem(set);
-        set.addContainedItem(bottle);
-        set.addContainedItem(salt);
-        set.addContainedItem(juice);
+        //room1.addRoomItem(set);
+        //set.addContainedItem(bottle);
+        //set.addContainedItem(salt);
+        //set.addContainedItem(juice);
         //set.addContainedItem(glass);
         //set.addContainedItem(glass);
 

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Player {
   private Room currentRoom;
-  private int health = 30;
+  private int health = 35;
   private ArrayList<Item> inventory = new ArrayList<Item>();
   private Weapon equippedWeapon;
   private int insight;                                      // insight increments when:
