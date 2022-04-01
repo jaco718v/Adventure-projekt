@@ -79,17 +79,13 @@ public class AdventureInterface {
     Item bangle = new Item("Bracelet", false,false,"none","Cult Snake Bracelet", "Gabriel had Marcus cast this, in order to pass himself off as a member of the voodoo cult... to his credit, it really does look like a thing of evil. Who is planning to fool, this time?");
 
     Scanner keybdINput = new Scanner(System.in);
-    String choice = keybdINput.nextLine() + " ";
+    String choice = keybdINput.nextLine().toUpperCase();
     String letter = " ";
     Item itemBehindLetter;
     ArrayList<Item> startingInventory = new ArrayList<>();
 
-    for (int i = 0; i <=2; i++) {
-      if (i > 2) {
-        letter = choice.substring(2);
-      } else {
+    for (int i = 0; i < 3; i++) {
         letter = choice.substring(i, i + 1);
-      }
       switch (letter) {
         case "A":
           itemBehindLetter = NSEW;
@@ -142,13 +138,12 @@ public class AdventureInterface {
           itemBehindLetter = tracker;
           startingInventory.add(itemBehindLetter);
           break;
-        default:
+        case "L":
           itemBehindLetter = wallet;
           startingInventory.add(itemBehindLetter);
           break;
-
+        }
       }
-    }
     return startingInventory;
   }
 
@@ -157,7 +152,6 @@ public class AdventureInterface {
     AdventureEngine engine = new AdventureEngine();
     Scanner sc = new Scanner(System.in);
     String choice = null;
-
     engine.player.setInventory(obj.intro());
     obj.showVisual();
     engine.playMusic();
@@ -198,7 +192,10 @@ public class AdventureInterface {
         case "search" -> {
           if (engine.getSearch() != null) {
             System.out.println(engine.getSearch());
-            if (!engine.player.getCurrentRoom().getRoomItems().isEmpty()) {
+            if(engine.player.getCurrentRoom().getRoomEnemies().size()>0){
+              System.out.println("An enemy "+engine.getRoomEnemy().getName()+" is in the room with you!");
+            }
+            if (engine.player.getCurrentRoom().getRoomItems().size()>0) {
               System.out.println("The room also contains:");
               for (PseudoItems pseudo : engine.player.getCurrentRoom().getRoomPseudos()) {
                 System.out.printf("\u001B[30m" + pseudo.getPseudoName() + "\t\t\u001B[33m");
