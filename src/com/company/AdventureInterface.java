@@ -203,9 +203,11 @@ public class AdventureInterface {
               for (PseudoItems pseudo : engine.player.getCurrentRoom().getRoomPseudos()) {
                 System.out.printf("\u001B[30m" + pseudo.getPseudoName() + "\t\t\u001B[33m");
               }
+              System.out.println();
               for (Item item : engine.player.getCurrentRoom().getRoomItems()) {
                 System.out.printf("\u001B[30m" + item.getItemName() + "\t\t\u001B[33m");
               }
+              System.out.println();
             }
           } else {
             System.out.println(engine.darkSearch());
@@ -379,7 +381,6 @@ public class AdventureInterface {
                 System.out.println("Gabriels current health: "+engine.player.getHealth()+"/30");
                 System.out.println(engine.getRoomEnemy().getName()+ "'s current health: "+engine.getRoomEnemy().getHealth());
 
-              engine.fleeFlagReset();
               if(engine.enemyDeath()){
                 System.out.println("You've defeated the enemy");
               }
@@ -387,6 +388,7 @@ public class AdventureInterface {
                 System.out.println("You flee the battle");
               }
               }
+              engine.fleeFlagReset();
             }
           }
         }
