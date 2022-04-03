@@ -7,7 +7,7 @@ public class MapCreator {
 
     Room room0 = new Room("room0", "\u001B[42m7 hours later, Gabriel's plane touches down in the very heart of Africa. After a short drive, Gabriel arrives at the burial mound... \n" +
             "This place is... very green. Gabriel sure didn't expect to find such lush, and verdant splendor in an equatorial country...\n" +
-            "\"(Whistle)... a Wheel-within-a-wheel! Like a vèvè... It's a little bigger, than I thought it'd be.\"\n",
+            "\"(Whistle)... a Wheel-within-a-wheel! Like a vèvè... It's a little bigger, than I thought it'd be.\"\u001B[0m",
             "The burial mound sits at the mouth of the valley, surrounded by softly rolling grassy hills, that look like cresting waves, upon an otherwise still lake.\n" +
                     "There's a small grove of local trees near the path down to the mound, to the southeast.", null, "src/room0.gif");
     Room room1 = new Room("room1", "\u001B[40m\u001B[33mYou're in the floodlit entryway of the burial mound. Vines run like snakes across the down-sloping ceiling.\n" +
@@ -130,7 +130,7 @@ public class MapCreator {
     Item jewel4 = new Item("Coin", false,false,"valuable: 175-240 $, found from random Event (multiples possible).", "Ancient Tribal Coin","This gold coin is obviously ancient... And probably rare. Undoubtedly quite valuable.");
 
     public void unleashZombies() {
-        MeleeWeapon claw = new MeleeWeapon("claw",3,false,false,"enemyWeapon","zombClaw","none");
+        MeleeWeapon claw = new MeleeWeapon("claw",3,false,false,"enemyWeapon","Zombie-Claw","A claw from a zombie");
         Enemy zombie1 = new Enemy(20,"Zombie",claw);
         Enemy zombie2 = new Enemy(20,"Zombie",claw);
         Enemy zombie3 = new Enemy(20,"Zombie",claw);

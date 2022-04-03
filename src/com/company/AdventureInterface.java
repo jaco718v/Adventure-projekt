@@ -21,10 +21,10 @@ public class AdventureInterface {
     //not implemented
   }
   public void combatHelp(){
-    System.out.println("The combat works like Roshambo with:\nAcute>Brutal \tBrutal>Cautious \tCautious>Acute\n"
-    +"You also have the defensive options Block and Evade:\nBrutal>Block \tEvade>Acute   Brutal deals 3 extra damage\n"
-    +"Succeeding in a defensive move deals no damage, but upgrade cautious to counter the following turn.\n"
-        +"Using counter carries no risk, but only beats cautious.");
+    System.out.println("The combat works like Roshambo with:\nAcute>Brutal \tBrutal>Cautious \tCautious>Acute\t Brutal deals 3 extra damage\n"
+    +"You also have the defensive options Block and Evade:\nBrutal>Block \tAcute>Evade   \n"
+    +"Succeeding in a defensive move deals no damage, but upgrades Cautious to Counter the following turn.\n"
+        +"Using counter carries no risk, but only beats cautious. \nEvade guarantees a flee-attempt on your next turn. ");
   }
 
   public void showVisual() {
@@ -165,6 +165,7 @@ public class AdventureInterface {
     engine.setRoomConnections();
     engine.setItems();
     System.out.println(engine.getNarrative());
+    System.out.print("\u001B[40m\u001B[33m");
 
     while (choice==null || !choice.equalsIgnoreCase("quit") ||!engine.player.playerDeath()) {
       choice = sc.nextLine().toLowerCase();
@@ -208,13 +209,11 @@ public class AdventureInterface {
             if (engine.player.getCurrentRoom().getRoomItems().size()>0) {
               System.out.println("The room also contains:");
               for (PseudoItems pseudo : engine.player.getCurrentRoom().getRoomPseudos()) {
-                System.out.printf("\u001B[30m" + pseudo.getPseudoName() + "\t\t\u001B[33m");
+                System.out.printf("\u001B[33m" + pseudo.getPseudoName() + "\t\t\u001B[33m");
               }
-              System.out.println();
               for (Item item : engine.player.getCurrentRoom().getRoomItems()) {
-                System.out.printf("\u001B[30m" + item.getItemName() + "\t\t\u001B[33m");
+                System.out.printf("\u001B[33m" + item.getItemName() + "\t\t\u001B[33m");
               }
-              System.out.println();
             }
           } else {
             System.out.println(engine.darkSearch());
@@ -300,7 +299,7 @@ public class AdventureInterface {
           }
           else {
           for(Item item: engine.inventory())
-            System.out.printf("\u001B[36m" + item.getItemName() + "\t\t\u001B[40m\u001B[33m");
+            System.out.printf("\u001B[40m\u001B[33m\"" + item.getItemName() + "\"\t,\t\u001B[40m\u001B[33m");
           }
           if(engine.getEquippedWeapon()!=null){
             System.out.println("Equipped: "+engine.getEquippedWeapon().getItemName());
@@ -318,7 +317,7 @@ public class AdventureInterface {
             case EnemyPresent -> {
               System.out.println("You engage the enemy "+engine.getRoomEnemy().getName());
 
-              while(!engine.player.playerDeath() || engine.player.getCurrentRoom().getRoomEnemies().size() >0 && !engine.player.isFleeFlag()){
+              while(!engine.player.playerDeath() && engine.player.getCurrentRoom().getRoomEnemies().size() >0 && !engine.player.isFleeFlag()){
               CombatOption choice1 = engine.combatRandomChoice1();
               CombatOption choice2 = choice1;
               while (choice2 == choice1) {
@@ -348,14 +347,14 @@ public class AdventureInterface {
                 System.out.println("You're out of ammo. Fleeing is recommended.");
               }
 
-              int attackChoice = 0;
-              while (attackChoice != 1 && attackChoice != 2 && attackChoice != 3) {
-                attackChoice = sc.nextInt();
+              String attackChoice = null;
+              while (attackChoice==null || !attackChoice.equals( "1") && !attackChoice.equals("2") && !attackChoice.equals("3")) {
+                attackChoice = sc.nextLine();
               }
               CombatResult result;
-              if (attackChoice == 1) {
+              if (attackChoice.equals("1")) {
                 result = engine.combat(choice1);
-              } else if (attackChoice == 2) {
+              } else if (attackChoice.equals("2")) {
                 result = engine.combat(choice2);
               } else {
                 result = engine.combat(CombatOption.Flee);
@@ -384,7 +383,7 @@ public class AdventureInterface {
                 case BrutalLoss -> System.out.println("The enemy succeeded in executing a brutal attack, dealing "
                     + engine.getRoomEnemy().enemyAttack() + " + 3 extra damage to you.");
                 case EnemyBlockSucces -> System.out.println("The enemy succeeds in blocking your attack.");
-                case FleeSucces -> System.out.println("You flee the battle");
+                case FleeSucces -> System.out.println("You avoid the attack and prepare to flee.");
               }
                 System.out.println("Gabriels current health: "+engine.player.getHealth()+"/30");
                 System.out.println(engine.getRoomEnemy().getName()+ "'s current health: "+engine.getRoomEnemy().getHealth());
